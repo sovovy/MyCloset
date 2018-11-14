@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- table title column color -->
+    <color name="colorPrimary">#AFD2CD</color>
+    <!-- status bar color -->
+    <color name="colorPrimaryDark">#75B1A9</color>
+    <!-- selected column color -->
+    <color name="colorAccent">#D9EAE7</color>
+    <!-- basic table color -->
+    <color name="colorBasic">#F0F7F6</color>
+
+    <color name="actionBar">#FAFAFA</color>
+    <color name="bottomBar">#FDFEFF</color>
+    <color name="bottomLine">#EEEEEE</color>
+    <color name="basicLine">#E0E0E0</color>
 </resources>

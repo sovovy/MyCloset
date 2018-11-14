@@ -1,4 +1,4 @@
-package com.mycloset.mycloset.ui
+package com.mycloset.mycloset.ui.today
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
