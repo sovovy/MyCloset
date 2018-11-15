@@ -9,6 +9,8 @@
     <!-- basic table color -->
     <color name="colorBasic">#F0F7F6</color>
 
+    <color name="infoText">#919191</color>
+    <color name="titleText">#000000</color>
     <color name="actionBar">#FAFAFA</color>
     <color name="bottomBar">#FDFEFF</color>
     <color name="bottomLine">#EEEEEE</color>
