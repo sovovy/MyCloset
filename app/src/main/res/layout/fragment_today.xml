@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="12dp"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@drawable/icon_plus"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -71,7 +71,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/today_info_tv"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@drawable/icon_info"/>
         <TextView
             android:id="@+id/today_info_tv"
             android:layout_width="wrap_content"
