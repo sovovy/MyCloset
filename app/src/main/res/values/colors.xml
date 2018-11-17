@@ -15,4 +15,5 @@
     <color name="bottomBar">#FDFEFF</color>
     <color name="bottomLine">#EEEEEE</color>
     <color name="basicLine">#E0E0E0</color>
+    <color name="someText">#737474</color>
 </resources>
