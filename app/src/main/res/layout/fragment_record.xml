@@ -1,21 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorAccent">
+        android:background="@color/bottomLine">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기록"/>
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/nanum_eb"
+            android:textColor="@color/titleText"
+            android:text="오늘의 기록" />
+
+        <!--회색체크박스넣기-->
+        <ImageButtonButton
+            android:id="@+id/check_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimaryDark"/>
-    </RelativeLayout>
-    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="1dp"
+        android:background ="@color/basicLine"
+        android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="564dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        android:backgroundTint="@color/bottomBar"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="시간"
+                android:fontFamily="@font/nanum_b"
+                android:textSize="15dp"
+                android:textColor="@color/titleText"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/time_decrement"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="0dp"
+                android:text="—"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/time_picked"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1"
+                android:textColor="@android:color/black"/>
+            <Button
+                android:id="@+id/time_increment"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="0dp"
+                android:text="+"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/basicLine"
+            android:background="@drawable/round"
+            android:layout_marginTop="10dp"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:text="날씨 상태"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"/>
+                <TextView />
+                <ImageView
+                    android:id="@+id/today_weatherImg"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </TableRow>
+            <TableRow
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:text="기온"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"/>
+                <TextView />
+                <TextView
+                    android:id="@+id/today_temperature"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+                <TextView />
+            </TableRow>
+            <TableRow
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:text="체감온도"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"/>
+                <TextView />
+                <TextView
+                    android:id="@+id/today_effectiveTem"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+                <TextView />
+            </TableRow>
+
+        </TableLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="겉옷"
+                android:fontFamily="@font/nanum_b"
+                android:textSize="15dp"
+                android:textColor="@color/titleText"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/record_outer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/bottomLine"
+                android:background="@drawable/round"
+                android:layout_margin="10dp"
+                android:maxLines="10"
+                android:textColor="@color/titleText"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="상의"
+                android:fontFamily="@font/nanum_b"
+                android:textSize="15dp"
+                android:textColor="@color/titleText"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/record_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/bottomLine"
+                android:background="@drawable/round"
+                android:layout_margin="10dp"
+                android:textColor="@color/titleText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="하의"
+                android:fontFamily="@font/nanum_b"
+                android:textSize="15dp"
+                android:textColor="@color/titleText"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/record_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/bottomLine"
+                android:background="@drawable/round"
+                android:layout_margin="10dp"
+                android:textColor="@color/titleText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="메모"
+                android:fontFamily="@font/nanum_b"
+                android:textSize="15dp"
+                android:textColor="@color/titleText"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/record_memo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/bottomLine"
+                android:background="@drawable/round"
+                android:layout_margin="10dp"
+                android:textColor="@color/titleText"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
