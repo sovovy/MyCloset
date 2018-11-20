@@ -4,4 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/bottomLine" >
+
+        <TextView
+            android:id="@+id/record_title_tv"
+            android:text="기록"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/nanum_eb"
+            android:textColor="@color/titleText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background ="@color/basicLine"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <!--초기 화면-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/record_info_constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/record_info_iv"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/record_info_tv"
+            android:background="@drawable/icon_info"/>
+        <TextView
+            android:id="@+id/record_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/record_info_iv"
+            android:layout_marginTop="14dp"
+            android:gravity="center_horizontal"
+            android:maxLines="10"
+            android:textSize="15sp"
+            android:textColor="@color/infoText"
+            android:text=" '오늘' 탭에서 오늘의 착장을 기록해보세요 :)"
+            android:fontFamily="@font/nanum_b"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5.1dp"
+        android:layout_marginStart="13dp"
+        android:visibility="gone"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:spanCount="2">
+
+    </android.support.v7.widget.RecyclerView>
+
 </android.support.constraint.ConstraintLayout>
