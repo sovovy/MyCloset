@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/add_title_relative"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/actionBar">
@@ -20,9 +20,9 @@
             android:textColor="@color/titleText"
             android:text="오늘의 기록" />
 
-        <!--회색체크박스넣기-->
+
         <ImageButton
-            android:id="@+id/check_gray"
+            android:id="@+id/add_check_ib"
             android:layout_width="30dp"
             android:layout_height="27dp"
             android:background="@drawable/icon_check"
@@ -42,7 +42,7 @@
         android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/add_title_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="11dp">
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/time_decrement"
+                    android:id="@+id/add_timeDecrement_bt"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -79,7 +79,7 @@
                     android:textColor="#737474"
                     android:textSize="25sp"/>
                 <TextView
-                    android:id="@+id/time_picked"
+                    android:id="@+id/add_timePicker_tv"
                     android:layout_width="173dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/white"
@@ -89,7 +89,7 @@
                     android:fontFamily="@font/nanum_r"/>
 
                 <Button
-                    android:id="@+id/time_increment"
+                    android:id="@+id/add_timeIncrement_bt"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -120,7 +120,7 @@
                     android:layout_width="80dp"
                     android:gravity="center_vertical"/>
                 <ImageView
-                    android:id="@+id/today_weatherImg"
+                    android:id="@+id/add_weather_iv"
                     android:src="@drawable/weather_sun"
                     android:layout_height="33dp"
                     android:layout_width="33dp"/>
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
-                    android:id="@+id/today_temperature"
+                    android:id="@+id/add_temper_tv"
                     android:fontFamily="@font/nanum_b"
                     android:textSize="14dp"
                     android:layout_height="match_parent"
@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
-                    android:id="@+id/today_effectiveTem"
+                    android:id="@+id/add_effectiveTemper_tv"
                     android:fontFamily="@font/nanum_b"
                     android:textSize="14dp"
                     android:layout_height="match_parent"
@@ -179,9 +179,10 @@
                 android:fontFamily="@font/nanum_b"
                 android:textSize="15dp"
                 android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
             <EditText
-                android:id="@+id/record_outer"
+                android:id="@+id/add_outer_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -204,9 +205,10 @@
                 android:fontFamily="@font/nanum_b"
                 android:textSize="15dp"
                 android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
             <EditText
-                android:id="@+id/record_top"
+                android:id="@+id/add_top_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -231,7 +233,7 @@
                 android:textColor="@color/titleText"
                 android:textStyle="bold"/>
             <EditText
-                android:id="@+id/record_bottom"
+                android:id="@+id/add_bottom_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -256,7 +258,7 @@
                 android:textColor="@color/titleText"
                 android:textStyle="bold"/>
             <EditText
-                android:id="@+id/record_memo"
+                android:id="@+id/add_memo_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
