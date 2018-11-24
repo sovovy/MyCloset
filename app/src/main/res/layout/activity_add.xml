@@ -39,13 +39,15 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="324dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
         app:layout_constraintTop_toBottomOf="@+id/add_title_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="11dp">
+        android:layout_marginTop="20dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
+                android:textSize="14sp"
                 android:textColor="@color/titleText"
                 android:textStyle="bold"/>
 
@@ -71,9 +73,9 @@
 
                 <Button
                     android:id="@+id/add_timeDecrement_bt"
-                    android:layout_width="30dp"
+                    android:layout_width="43dp"
                     android:layout_height="match_parent"
-                    android:background="@null"
+                    android:background="@drawable/button_left"
                     android:text="-"
                     android:fontFamily="@font/nanum_eb"
                     android:textColor="#737474"
@@ -82,17 +84,17 @@
                     android:id="@+id/add_timePicker_tv"
                     android:layout_width="173dp"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white"
+                    android:background="@drawable/stroke_square"
                     android:gravity="center"
-                    android:inputType="number"
                     android:text="1"
+                    android:textSize="14sp"
                     android:fontFamily="@font/nanum_r"/>
 
                 <Button
                     android:id="@+id/add_timeIncrement_bt"
-                    android:layout_width="30dp"
+                    android:layout_width="43dp"
                     android:layout_height="match_parent"
-                    android:background="@null"
+                    android:background="@drawable/button_right"
                     android:text="+"
                     android:fontFamily="@font/nanum_eb"
                     android:textColor="#737474"
@@ -102,21 +104,21 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:backgroundTint="@color/basicLine"
+            android:layout_height="wrap_content"
             android:background="@drawable/round"
-            android:layout_marginTop="10dp"
-            android:stretchColumns="*">
-
+            android:layout_marginTop="20dp"
+            android:paddingTop="25dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="25dp"
+            android:paddingLeft="20dp">
             <TableRow
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
+                android:layout_weight="1">
                 <TextView
                     android:text="날씨 상태"
                     android:fontFamily="@font/nanum_b"
-                    android:textSize="14dp"
-                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:textColor="@color/someText"
+                    android:layout_height="33dp"
                     android:layout_width="80dp"
                     android:gravity="center_vertical"/>
                 <ImageView
@@ -126,61 +128,60 @@
                     android:layout_width="33dp"/>
             </TableRow>
             <TableRow
-                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp">
+                android:layout_marginTop="27dp">
                 <TextView
                     android:text="기온"
                     android:fontFamily="@font/nanum_b"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/someText"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
                     android:id="@+id/add_temper_tv"
-                    android:fontFamily="@font/nanum_b"
-                    android:textSize="14dp"
+                    android:fontFamily="@font/nanum_r"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:text="19.3º"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"/>
-                <TextView />
             </TableRow>
             <TableRow
-                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_margin="10dp">
+                android:layout_marginTop="34dp">
                 <TextView
                     android:text="체감온도"
                     android:fontFamily="@font/nanum_b"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/someText"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
                     android:id="@+id/add_effectiveTemper_tv"
-                    android:fontFamily="@font/nanum_b"
-                    android:textSize="14dp"
+                    android:fontFamily="@font/nanum_r"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:text="19.3º"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"/>
-                <TextView />
             </TableRow>
-
         </TableLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="31dp"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp">
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:text="겉옷"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
-                android:textColor="@color/titleText"
-                android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:textSize="14sp"
+                android:textColor="@color/titleText"/>
             <EditText
                 android:id="@+id/add_outer_et"
                 android:layout_width="match_parent"
@@ -188,25 +189,22 @@
                 android:fontFamily="@font/nanum_r"
                 android:padding="9dp"
                 android:textSize="12sp"
-                android:backgroundTint="@color/bottomLine"
-                android:background="@drawable/round"
-                android:layout_margin="10dp"
-                android:maxLines="10"
+                android:background="@drawable/et_round"
                 android:textColor="@color/titleText"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="31dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp">
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:text="상의"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
-                android:textColor="@color/titleText"
-                android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:textSize="14sp"
+                android:textColor="@color/titleText"/>
             <EditText
                 android:id="@+id/add_top_et"
                 android:layout_width="match_parent"
@@ -214,24 +212,23 @@
                 android:fontFamily="@font/nanum_r"
                 android:padding="9dp"
                 android:textSize="12sp"
-                android:backgroundTint="@color/bottomLine"
-                android:background="@drawable/round"
-                android:layout_margin="10dp"
+                android:background="@drawable/et_round"
                 android:textColor="@color/titleText"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="31dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp">
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:text="하의"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
-                android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textSize="14sp"
+                android:textColor="@color/titleText"/>
             <EditText
                 android:id="@+id/add_bottom_et"
                 android:layout_width="match_parent"
@@ -239,24 +236,23 @@
                 android:fontFamily="@font/nanum_r"
                 android:padding="9dp"
                 android:textSize="12sp"
-                android:backgroundTint="@color/bottomLine"
-                android:background="@drawable/round"
-                android:layout_margin="10dp"
+                android:background="@drawable/et_round"
                 android:textColor="@color/titleText"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="31dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp">
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:text="메모"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
-                android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textSize="14sp"
+                android:textColor="@color/titleText"/>
             <EditText
                 android:id="@+id/add_memo_et"
                 android:layout_width="match_parent"
@@ -264,12 +260,8 @@
                 android:fontFamily="@font/nanum_r"
                 android:padding="9dp"
                 android:textSize="12sp"
-                android:backgroundTint="@color/bottomLine"
-                android:background="@drawable/round"
-                android:layout_margin="10dp"
+                android:background="@drawable/et_round"
                 android:textColor="@color/titleText"/>
         </LinearLayout>
-
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>
