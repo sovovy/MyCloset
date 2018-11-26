@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/item_time_tv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -19,12 +20,14 @@
             android:gravity="center"
             tools:text="3"/>
         <ImageView
+            android:id="@+id/item_weather_iv"
             android:layout_width="33dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:src="@drawable/weather_sun"/>
         <TextView
+            android:id="@+id/item_temper_tv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -35,6 +38,7 @@
             android:gravity="center"
             tools:text="19.3º"/>
         <TextView
+            android:id="@+id/item_sensible_tv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

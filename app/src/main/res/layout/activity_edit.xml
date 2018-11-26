@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/add_title_relative"
+        android:id="@+id/edit_title_relative"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/actionBar">
@@ -18,11 +18,11 @@
             android:textSize="18sp"
             android:fontFamily="@font/nanum_eb"
             android:textColor="@color/titleText"
-            android:text="오늘의 기록" />
+            android:text="그날의 기록" />
 
 
         <ImageButton
-            android:id="@+id/add_check_ib"
+            android:id="@+id/edit_check_ib"
             android:layout_width="30dp"
             android:layout_height="27dp"
             android:background="@drawable/icon_check"
@@ -35,7 +35,6 @@
             android:layout_height="1dp"
             android:background ="@color/basicLine"
             android:layout_alignParentBottom="true"/>
-
     </RelativeLayout>
 
     <LinearLayout
@@ -44,75 +43,41 @@
         android:orientation="vertical"
         android:layout_marginRight="18dp"
         android:layout_marginLeft="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_title_relative"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title_relative"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/add_time_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="시간"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="14sp"
-                android:textColor="@color/titleText"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/add_timeDecrement_bt"
-                    android:layout_width="43dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_left"
-                    android:text="-"
-                    android:fontFamily="@font/nanum_eb"
-                    android:textColor="#737474"
-                    android:textSize="25sp"/>
-                <TextView
-                    android:id="@+id/add_timePicker_tv"
-                    android:layout_width="173dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/stroke_square"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/nanum_r"/>
-
-                <Button
-                    android:id="@+id/add_timeIncrement_bt"
-                    android:layout_width="43dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_right"
-                    android:text="+"
-                    android:fontFamily="@font/nanum_eb"
-                    android:textColor="#737474"
-                    android:textSize="25sp"/>
-            </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round"
-            android:layout_marginTop="20dp"
             android:paddingTop="25dp"
             android:paddingRight="20dp"
             android:paddingBottom="25dp"
             android:paddingLeft="20dp">
             <TableRow
                 android:layout_weight="1">
+                <TextView
+                    android:text="시간"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="14sp"
+                    android:textColor="@color/someText"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/edit_time_tv"
+                    android:fontFamily="@font/nanum_r"
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:text="13시"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </TableRow>
+            <TableRow
+                android:layout_weight="1"
+                android:layout_marginTop="27dp">
                 <TextView
                     android:text="날씨 상태"
                     android:fontFamily="@font/nanum_b"
@@ -122,7 +87,7 @@
                     android:layout_width="80dp"
                     android:gravity="center_vertical"/>
                 <ImageView
-                    android:id="@+id/add_weather_iv"
+                    android:id="@+id/edit_weather_iv"
                     android:src="@drawable/weather_sun"
                     android:layout_height="33dp"
                     android:layout_width="33dp"/>
@@ -139,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
-                    android:id="@+id/add_temper_tv"
+                    android:id="@+id/edit_temper_tv"
                     android:fontFamily="@font/nanum_r"
                     android:textSize="14sp"
                     android:textColor="#000000"
@@ -159,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"/>
                 <TextView
-                    android:id="@+id/add_effectiveTemper_tv"
+                    android:id="@+id/edit_effectiveTemper_tv"
                     android:fontFamily="@font/nanum_r"
                     android:textSize="14sp"
                     android:textColor="#000000"
@@ -183,7 +148,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/titleText"/>
             <EditText
-                android:id="@+id/add_outer_et"
+                android:id="@+id/edit_outer_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -206,7 +171,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/titleText"/>
             <EditText
-                android:id="@+id/add_top_et"
+                android:id="@+id/edit_top_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -230,7 +195,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/titleText"/>
             <EditText
-                android:id="@+id/add_bottom_et"
+                android:id="@+id/edit_bottom_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
@@ -254,7 +219,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/titleText"/>
             <EditText
-                android:id="@+id/add_memo_et"
+                android:id="@+id/edit_memo_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanum_r"
