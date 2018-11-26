@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.add.AddActivity" />
+        <activity android:name=".ui.setting.SelectActivity" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.setting.SelectGuActivity"></activity>
         <activity android:name=".ui.theday.ThedayActivity" />
         <activity android:name=".ui.edit.EditActivity"></activity>
     </application>

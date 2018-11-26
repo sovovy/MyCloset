@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.network.WeatherApi
 import com.mycloset.mycloset.ui.add.AddActivity
+import com.mycloset.mycloset.ui.setting.SelectActivity
 import com.mycloset.mycloset.ui.today.recyclerview.ColumnAdapter
 import com.mycloset.mycloset.ui.today.recyclerview.ColumnItem
 import com.mycloset.mycloset.util.SharedPreferenceController
@@ -46,6 +47,11 @@ class TodayFragment : Fragment(), View.OnClickListener{
             columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time)))
         }
 
+        v.today_title_tv.text = SharedPreferenceController.sharedPreferenceController.getGu(context!!)+" ^~^"
+
+        v.today_title_tv.setOnClickListener {
+            startActivity(Intent(activity, SelectActivity::class.java))
+        }
         columnAdapter = ColumnAdapter(columnItems)
         val llm = LinearLayoutManager(context)
         llm.orientation = RecyclerView.HORIZONTAL
