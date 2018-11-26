@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.setting.SelectActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/select_title_relative"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/actionBar"
+        app:layout_constraintBottom_toTopOf="@id/select_si_lv"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/nanum_eb"
+            android:textColor="@color/titleText"
+            android:text="지역 설정" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background ="@color/basicLine"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/select_si_lv"
+        android:fontFamily="@font/nanum_b"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/select_title_relative"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+    </ListView>
+
+</android.support.constraint.ConstraintLayout>

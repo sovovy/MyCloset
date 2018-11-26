@@ -1,16 +1,22 @@
 package com.mycloset.mycloset.ui
 
+import android.app.Activity
+import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.record.RecordFragment
+import com.mycloset.mycloset.ui.setting.SelectActivity
 import com.mycloset.mycloset.ui.setting.SettingFragment
 import com.mycloset.mycloset.ui.today.TodayFragment
+import com.mycloset.mycloset.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
     // 하단탭 버튼이 눌릴 때, 아이콘 이미지 변경과 fragment 교체
     override fun onClick(v: View?) {
         when(v){
@@ -38,6 +44,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var pref : SharedPreferences = getSharedPreferences("isFirst", Activity.MODE_PRIVATE)
+        var isFirstRun = pref.getBoolean("isFirst", true)
+        if(isFirstRun){
+            pref.edit().putBoolean("isFirst", false).apply()
+            startActivity(Intent(this, SelectActivity::class.java))
+        }
+        else{
+            SharedPreferenceController.sharedPreferenceController.getX(this)
+            SharedPreferenceController.sharedPreferenceController.getY(this)
+        }
 
         addFragment(TodayFragment())
 
