@@ -9,7 +9,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/bottomLine" >
+        android:background="@color/actionBar" >
 
         <TextView
             android:id="@+id/record_title_tv"
@@ -62,14 +62,14 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/record_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5.1dp"
-        android:layout_marginStart="13dp"
-        android:visibility="gone"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:spanCount="2">
 
     </android.support.v7.widget.RecyclerView>
