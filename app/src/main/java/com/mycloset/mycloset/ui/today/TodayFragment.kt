@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.add.AddActivity
+import com.mycloset.mycloset.ui.setting.SelectActivity
+import com.mycloset.mycloset.util.SharedPreferenceController
+import kotlinx.android.synthetic.main.fragment_today.*
 import kotlinx.android.synthetic.main.fragment_today.view.*
 
 class TodayFragment : Fragment() {
@@ -16,6 +19,13 @@ class TodayFragment : Fragment() {
         v.today_add_ib.setOnClickListener {
             startActivity(Intent(activity, AddActivity::class.java))
         }
+
+        v.today_title_tv.text = SharedPreferenceController.sharedPreferenceController.getGu(context!!)+" ^~^"
+
+        v.today_title_tv.setOnClickListener {
+            startActivity(Intent(activity, SelectActivity::class.java))
+        }
+
         return v
     }
 }

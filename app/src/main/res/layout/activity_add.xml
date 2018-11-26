@@ -172,15 +172,16 @@
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
+
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:text="겉옷"
                 android:fontFamily="@font/nanum_b"
-                android:textSize="15dp"
+                android:text="겉옷"
                 android:textColor="@color/titleText"
+                android:textSize="15dp"
                 android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:layout_marginTop="8dp"/>
             <EditText
                 android:id="@+id/add_outer_et"
                 android:layout_width="match_parent"
@@ -206,7 +207,7 @@
                 android:textSize="15dp"
                 android:textColor="@color/titleText"
                 android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:layout_marginTop="8dp"/>
             <EditText
                 android:id="@+id/add_top_et"
                 android:layout_width="match_parent"
@@ -231,7 +232,8 @@
                 android:fontFamily="@font/nanum_b"
                 android:textSize="15dp"
                 android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
             <EditText
                 android:id="@+id/add_bottom_et"
                 android:layout_width="match_parent"
@@ -256,7 +258,8 @@
                 android:fontFamily="@font/nanum_b"
                 android:textSize="15dp"
                 android:textColor="@color/titleText"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
             <EditText
                 android:id="@+id/add_memo_et"
                 android:layout_width="match_parent"
