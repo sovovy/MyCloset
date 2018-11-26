@@ -4,8 +4,10 @@
     <color name="colorPrimary">#AFD2CD</color>
     <!-- status bar color -->
     <color name="colorPrimaryDark">#75B1A9</color>
+
+    <color name="colorAccent">#75B1A9</color>
     <!-- selected column color -->
-    <color name="colorAccent">#D9EAE7</color>
+    <color name="colorSelect">#D9EAE7</color>
     <!-- basic table color -->
     <color name="colorBasic">#F0F7F6</color>
 
