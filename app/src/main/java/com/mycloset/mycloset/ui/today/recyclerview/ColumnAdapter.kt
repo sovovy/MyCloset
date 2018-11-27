@@ -15,9 +15,21 @@ class ColumnAdapter(var columnItems : ArrayList<ColumnItem>) : RecyclerView.Adap
     override fun getItemCount(): Int = columnItems.size
 
     override fun onBindViewHolder(holder: ColumnViewHolder, position: Int) {
-        when(columnItems[position].weather){
+        when(columnItems[position].weather) {
             "sunny" -> {
                 holder.columnWeather.setImageResource(R.drawable.weather_sun)
+            }
+            "little cloudy" -> {
+                holder.columnWeather.setImageResource(R.drawable.weather_cloud)
+            }
+            "cloudy" -> {
+                holder.columnWeather.setImageResource(R.drawable.weather_cloud_2)
+            }
+            "rainy" -> {
+                holder.columnWeather.setImageResource(R.drawable.weather_rain)
+            }
+            else -> {
+                holder.columnWeather.setImageResource(R.drawable.weather_snow)
             }
         }
         holder.columnTime.text = columnItems[position].time.toString()
