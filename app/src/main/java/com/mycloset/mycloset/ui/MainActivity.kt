@@ -45,15 +45,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var pref : SharedPreferences = getSharedPreferences("isFirst", Activity.MODE_PRIVATE)
-        var isFirstRun = pref.getBoolean("isFirst", true)
-        if(isFirstRun){
-            pref.edit().putBoolean("isFirst", false).apply()
+        if(!SharedPreferenceController.sharedPreferenceController.getFirst(this)){
+            SharedPreferenceController.sharedPreferenceController.setFirst(this, true)
             startActivity(Intent(this, SelectActivity::class.java))
-        }
-        else{
-            SharedPreferenceController.sharedPreferenceController.getX(this)
-            SharedPreferenceController.sharedPreferenceController.getY(this)
         }
 
         addFragment(TodayFragment())

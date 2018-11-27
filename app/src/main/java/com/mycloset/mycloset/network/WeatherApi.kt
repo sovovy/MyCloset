@@ -112,8 +112,8 @@ class WeatherApi {
                                 2 -> result = 2
                                 3,4 -> result = 3
                             }
-                            skyFlag = true
                         }
+                        skyFlag = true
                     }
                     "PTY" -> {
                         when(item.fcstValue.toInt()){

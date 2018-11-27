@@ -1,5 +1,6 @@
 package com.mycloset.mycloset.ui.today
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -51,12 +52,12 @@ class TodayFragment : Fragment(), View.OnClickListener{
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
 
         // api data get init
-        api.init(92, 131)
+//        api.init(SharedPreferenceController.sharedPreferenceController.getX(context as Context), SharedPreferenceController.sharedPreferenceController.getY(context as Context))
 
         // api 클래스에 정리된 데이터를 가져오기
-        for(time in api.start .. api.end step 3){
-            columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time)))
-        }
+//        for(time in api.start .. api.end step 3){
+//            columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time)))
+//        }
         columnAdapter = ColumnAdapter(columnItems)
         val llm = LinearLayoutManager(context)
         llm.orientation = RecyclerView.HORIZONTAL

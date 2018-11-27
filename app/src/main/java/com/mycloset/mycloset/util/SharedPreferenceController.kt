@@ -8,6 +8,18 @@ import android.support.v4.content.ContextCompat.startActivity
 import com.mycloset.mycloset.ui.setting.SelectActivity
 
 class SharedPreferenceController private constructor() {
+    // 첫 실행 판별
+    fun setFirst(context: Context, flag: Boolean) {
+        val pref = context.getSharedPreferences("FIRST", Activity.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putBoolean("FIRST", flag)
+        editor.commit()
+    }
+    fun getFirst(context: Context): Boolean {
+        val pref = context.getSharedPreferences("FIRST", Activity.MODE_PRIVATE)
+        return pref.getBoolean("FIRST", false)
+    }
+
     // 지역 설정 값
     fun setX(context: Context, x: Int) {
         val pref = context.getSharedPreferences("X", Activity.MODE_PRIVATE)
