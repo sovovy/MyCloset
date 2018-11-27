@@ -13,6 +13,7 @@ import com.mycloset.mycloset.R
 import com.mycloset.mycloset.network.WeatherApi
 import com.mycloset.mycloset.ui.MainActivity
 import com.mycloset.mycloset.ui.add.AddActivity
+import com.mycloset.mycloset.ui.setting.SelectActivity
 import com.mycloset.mycloset.ui.today.recyclerview.ColumnAdapter
 import com.mycloset.mycloset.ui.today.recyclerview.ColumnItem
 import com.mycloset.mycloset.util.SharedPreferenceController
@@ -29,16 +30,19 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         when(v){
-            today_add_ib ->{
-                startActivity(Intent(activity, AddActivity::class.java))
-            }
+            today_add_ib -> startActivity(Intent(activity, AddActivity::class.java))
+            today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_today,container,false)
+        // set title by location
+        v.today_title_tv.text = SharedPreferenceController.sharedPreferenceController.getGu(context!!)+" ^~^"
+
         // click listener attach
         v.today_add_ib.setOnClickListener(this)
+        v.today_title_tv.setOnClickListener(this)
 
         // recyclerView
         columnItems = ArrayList()
