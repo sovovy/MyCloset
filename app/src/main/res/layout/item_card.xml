@@ -1,221 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/tools"
-    android:layout_marginBottom="13dp"
-    android:layout_width="160dp"
-    android:layout_height="235dp"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="5dp"
-    android:shadowDy="1"
-    android:shadowRadius="6">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/item_iv_background"
-        android:src="@drawable/ic_launcher_background"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:id="@+id/item_cv"
+        android:layout_marginBottom="13dp"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:scaleType="fitXY"/>
+        android:layout_height="235dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        android:shadowDy="1"
+        android:shadowRadius="6">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/item_iv_background"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:scaleType="fitXY"/>
 
-        <TableRow
-            android:layout_height="16dp"
-            android:layout_width="58dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp">
+        <TableLayout
+            android:id="@+id/item_tl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/item_tv_date"
-                android:layout_height="wrap_content"
+            <TableRow
+                android:layout_height="16dp"
+                android:layout_width="58dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf = "parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+                <TextView
+                    android:id="@+id/item_tv_date"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:shadowColor="#29000000"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="2sp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/nanum_b"
+                    android:text="오늘 날짜"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/item_iv_weather"
+                    android:layout_height="25dp"
+                    android:layout_width="25dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/item_tv_date"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_height="16dp"
                 android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="2sp"
-                android:textSize="14dp"
-                android:fontFamily="@font/nanum_b"
-                android:text="오늘 날짜"/>
+                android:layout_marginTop="11dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:id="@+id/item_iv_weather"
-                android:layout_height="25dp"
-                android:layout_width="25dp"/>
-        </TableRow>
+                <TextView
+                    android:id="@+id/item_tv_temper_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/nanum_b"
+                    android:lineSpacingExtra="16sp"
+                    android:shadowColor="#29000000"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="기온: "
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
-        <TableRow
-            android:layout_height="16dp"
-            android:layout_width="104dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginStart="16dp">
+                <TextView
+                    android:id="@+id/item_tv_temper"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/nanum_b"
+                    android:shadowColor="#29000000"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/item_tv_temper_"/>
+            </TableRow>
 
-            <TextView
-                android:text="기온: "
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/nanum_b"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:textSize="14sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="16sp"/>
+            <TableRow
+                android:layout_height="16dp"
+                android:layout_width="104dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="16dp">
 
-            <TextView
-                android:id="@+id/item_tv_temper"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:fontFamily="@font/nanum_b"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:textSize="14sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="16sp"/>
-            <TextView />
-        </TableRow>
+                <TextView
+                    android:text="체감 온도: "
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/nanum_b"
+                    android:shadowColor="#29000000"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="16sp"/>
 
-        <TableRow
-            android:layout_height="16dp"
-            android:layout_width="104dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="16dp">
-
-            <TextView
-                android:text="체감 온도: "
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/nanum_b"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:textSize="14sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="16sp"/>
-
-            <TextView
-                android:id="@+id/item_tv_feel"
-                android:fontFamily="@font/nanum_b"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:shadowColor="#29000000"
-                android:shadowDy="3"
-                android:shadowRadius="6"
-                android:textSize="14sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="16sp"/>
-            <TextView />
-        </TableRow>
+                <TextView
+                    android:id="@+id/item_tv_feel"
+                    android:fontFamily="@font/nanum_b"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:shadowColor="#29000000"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="16sp"/>
+            </TableRow>
 
 
 
+            <TableRow
+                android:layout_height="14dp"
+                android:layout_width="110dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="20dp">
 
-        <TableRow
-            android:layout_height="14dp"
-            android:layout_width="45dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginStart="20dp">
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:text="겉옷:"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="14dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="13sp"
+                    android:textStyle="bold"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="겉옷:"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="14dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="13sp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/item_tv_outer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="12dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="38sp" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/item_tv_outer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="38sp" />
-        </TableRow>
+            <TableRow
+                android:layout_height="14dp"
+                android:layout_width="45dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="20dp">
 
-        <TableRow
-            android:layout_height="14dp"
-            android:layout_width="45dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginStart="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상의:"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="14dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="13sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/item_tv_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="12dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="38sp"/>
+            </TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상의:"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="14dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="13sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/item_tv_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="38sp"/>
-        </TableRow>
+            <TableRow
+                android:layout_height="14dp"
+                android:layout_width="45dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="20dp">
 
-        <TableRow
-            android:layout_height="14dp"
-            android:layout_width="45dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginStart="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="하의:"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="14dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="13sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/item_tv_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="12dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="38sp"/>
+            </TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="하의:"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="14dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="13sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/item_tv_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="38sp"/>
-        </TableRow>
+            <TableRow
+                android:layout_height="14dp"
+                android:layout_width="45dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="20dp">
 
-        <TableRow
-            android:layout_height="14dp"
-            android:layout_width="45dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginStart="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="메모:"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="14dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="13sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/item_tv_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_b"
+                    android:textSize="12dp"
+                    android:textColor="#000000"
+                    android:lineSpacingExtra="38sp"/>
+            </TableRow>
+        </TableLayout>
+    </android.support.v7.widget.CardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="메모:"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="14dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="13sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/item_tv_memo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_b"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="38sp"/>
-        </TableRow>
-    </TableLayout>
-</android.support.v7.widget.CardView>
-
+</RelativeLayout>

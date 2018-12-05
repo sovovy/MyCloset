@@ -18,7 +18,7 @@ class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
         holder.recordDate.text = recordItems[position].date
-//        weather ="sunny, cloud"
+
         when(recordItems[position].weather){
             "sunny"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_sun)

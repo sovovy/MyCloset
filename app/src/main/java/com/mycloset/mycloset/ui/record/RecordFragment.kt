@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.mycloset.mycloset.R
 import io.realm.Realm
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.fragment_record.view.*
 
@@ -18,43 +19,45 @@ class RecordFragment : Fragment() {
     lateinit var recordRealm: Realm
     lateinit var recordAdapter: RecordAdapter
     lateinit var recordItems: ArrayList<RecordItem>
-    
 
-
-    fun init() {
-        Realm.init(this.context)    // ?
-        recordRealm = Realm.getDefaultInstance()
-    }
+//    fun init() {
+//        Realm.init(this.context)    // ?
+//        recordRealm = Realm.getDefaultInstance()
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_record,container,false)
-        //Log.d("asd",recordItems.size.toString())
 
-        Realm.init(this.context)   // this.context 아님
+        // realm 초기화
+        Realm.init(context)
+        recordRealm = Realm.getDefaultInstance()
 
         recordItems = ArrayList()
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"cloud",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"cloud2",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"lighting",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"rain",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"snow",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
-        recordItems.add(RecordItem(0,"2018-12-22",3,"sunny",19.4f,21.4f,"g","gg","g","ggg"))
 
+        var resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
+        Log.d("resoultsRecord size: ",resultsRecord.size.toString())
 
+        if(resultsRecord.size>0) {
+            v.record_rv.visibility = View.VISIBLE
+            v.record_info_iv.visibility = View.GONE
+            v.record_info_tv.visibility = View.GONE
+        } else {
+            v.record_rv.visibility = View.GONE
+            v.record_info_iv.visibility = View.VISIBLE
+            v.record_info_tv.visibility = View.VISIBLE
+        }
+
+        // db에 저장된 모든 record들을 recordItem arrayList에 저장
+        for(record in resultsRecord) {
+            recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather, record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
+        }
 
 
         recordAdapter = RecordAdapter(recordItems)
-        val glm = GridLayoutManager(context,2, GridLayoutManager.HORIZONTAL, false)
+        val glm = GridLayoutManager(context,2)
         glm.orientation = RecyclerView.VERTICAL
         v.record_rv.layoutManager = glm
         v.record_rv.adapter = recordAdapter
-
 
         return v
     }
