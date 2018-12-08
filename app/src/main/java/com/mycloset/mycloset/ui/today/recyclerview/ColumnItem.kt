@@ -3,6 +3,6 @@ package com.mycloset.mycloset.ui.today.recyclerview
 data class ColumnItem (
         var time : Int,
         var weather : String,
-        var temper : Float,
-        var sensible : Float
+        var temper : Int,
+        var sensible : Int
 )
