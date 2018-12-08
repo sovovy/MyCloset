@@ -62,18 +62,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         main_setting_iv.setOnClickListener(this)
 
         Realm.init(this)
-//        // db 초기화
-//        var config = RealmConfiguration.Builder()
-//                .deleteRealmIfMigrationNeeded()
-//                .schemaVersion(2)
-//                .migration(MyMigration())
-//                .build()
-//        Realm.setDefaultConfiguration(config)
+        // db 초기화
+        var config = RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(2)
+                .migration(MyMigration())
+                .build()
+        Realm.setDefaultConfiguration(config)
 
         // realm을 schemaVersion 2로 build
-        var config = RealmConfiguration.Builder().schemaVersion(2).build()
-        Realm.setDefaultConfiguration(config)
-        Realm.getDefaultInstance()
+//        var config = RealmConfiguration.Builder().schemaVersion(2).build()
+//        Realm.setDefaultConfiguration(config)
+//        Realm.getDefaultInstance()
 
 //        var recordItem:Realm
 //        recordItem = Realm.getDefaultInstance()

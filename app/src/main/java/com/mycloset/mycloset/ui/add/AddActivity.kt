@@ -1,8 +1,10 @@
 package com.mycloset.mycloset.ui.add
 
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -13,9 +15,20 @@ import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_add.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AddActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var realm: Realm
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val now = LocalDateTime.now()
+    @RequiresApi(Build.VERSION_CODES.O)
+    var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    @RequiresApi(Build.VERSION_CODES.O)
+    val formatted = now.format(formatter)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +43,14 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         when(v) {
 
             add_check_ib -> Realm.getDefaultInstance().use { realm ->
-//                Log.d("잘되냐?","ㅣㅣㅣ")
                 realm.executeTransaction { realm ->
                     // Add a recordItem
                     val recordItem = RecordItem(realm.where(RecordItem::class.java).findAll().size,
-                            "2018-12-05",
+                            formatted,   // 오늘 날짜
                             add_timePicker_tv.text.toString().toInt(),
                             "sunny",
-                            add_temper_tv.text.toString().substring(0,add_temper_tv.text.length-1).toFloat(),
-                            add_effectiveTemper_tv.text.toString().substring(0,add_effectiveTemper_tv.text.length-1).toFloat(),
+                            add_temper_tv.text.toString().substring(0,add_temper_tv.text.length-1).toInt(),
+                            add_effectiveTemper_tv.text.toString().substring(0,add_effectiveTemper_tv.text.length-1).toInt(),
                             add_outer_et.text.toString(),
                             add_top_et.text.toString(),
                             add_bottom_et.text.toString(),

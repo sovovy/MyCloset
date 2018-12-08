@@ -37,6 +37,7 @@ class RecordFragment : Fragment() {
         var resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
         Log.d("resoultsRecord size: ",resultsRecord.size.toString())
 
+        // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
         if(resultsRecord.size>0) {
             v.record_rv.visibility = View.VISIBLE
             v.record_info_iv.visibility = View.GONE
