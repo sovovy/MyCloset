@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.MainActivity
+import com.mycloset.mycloset.ui.setting.SelectActivity
+import com.mycloset.mycloset.util.SharedPreferenceController
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,7 +18,12 @@ class SplashActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
 
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            if(!SharedPreferenceController.sharedPreferenceController.getFirst(this)) {
+                SharedPreferenceController.sharedPreferenceController.setFirst(this, true)
+                startActivity(Intent(this, SelectActivity::class.java))
+            }else {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+            }
             finish()
 
 

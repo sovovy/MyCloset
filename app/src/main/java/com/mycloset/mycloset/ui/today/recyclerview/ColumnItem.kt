@@ -4,5 +4,6 @@ data class ColumnItem (
         var time : Int,
         var weather : String,
         var temper : Int,
-        var sensible : Int
+        var sensible : Int,
+        var selected : Boolean
 )
