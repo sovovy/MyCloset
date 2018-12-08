@@ -29,8 +29,8 @@ class WeatherApi {
         val today = SimpleDateFormat("yyyyMMdd").format(Date()).toString()
         // 어제 날짜 string
         val yesterday = SimpleDateFormat("yyyyMMdd").format(cal.time).toString()
-        // 현재 시간 '시
-        var hour = SimpleDateFormat("kk").format(Date()).toInt()         // 01-24
+        // 현재 시간 '시 01-24
+        var hour = SimpleDateFormat("kk").format(Date()).toInt()
         // 현재 시간 '분
         val minute = SimpleDateFormat("mm").format(Date()).toInt()
         // API 결과 body의 item
@@ -62,7 +62,7 @@ class WeatherApi {
             getWeather = networkService.getWeather(key, today, "0500", nx, ny, 1, 100,"json")
             setWeather(getWeather.execute().body().response.body.items.item, 9, 21)
         }else{
-            // 현재 시간이 11시 10분 ~ 23시 59분
+            // 현재 시간이 23시 10분 ~ 23시 59분
             // : 오늘 날짜 0200에서 0300~0600
             // : 오늘 날짜 0500에서 0900~2100
             getWeather = networkService.getWeather(key, today, "0200", nx, ny, 1, 30,"json")

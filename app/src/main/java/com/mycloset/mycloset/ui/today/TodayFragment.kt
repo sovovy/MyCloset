@@ -34,13 +34,16 @@ class TodayFragment : Fragment(), View.OnClickListener{
             today_add_ib -> startActivity(Intent(activity, AddActivity::class.java))
             today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
             else -> {
-                // column 선택시 색상 변경
-                val idx : Int = today_column_rv.getChildAdapterPosition(v)
-                for(i in 0 until columnItems.size){
-                    columnItems[i].selected = false
+                // column item이면
+                if(today_column_rv.getChildPosition(v)!=-1) {
+                    // column 선택시 색상 변경
+                    val idx: Int = today_column_rv.getChildAdapterPosition(v)
+                    for (i in 0 until columnItems.size) {
+                        columnItems[i].selected = false
+                    }
+                    columnItems[idx].selected = true
+                    columnAdapter.notifyDataSetChanged()
                 }
-                columnItems[idx].selected = true
-                columnAdapter.notifyDataSetChanged()
             }
         }
     }
