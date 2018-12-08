@@ -22,33 +22,27 @@ class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapt
         when(recordItems[position].weather){
             "sunny"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_sun)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_sun)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_sunny)
             }
             "cloud"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_cloud)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_cloud)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_cloud)
             }
             "cloud2"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_cloud_2)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_cloud_2)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_cloud2)
             }
             "lighting"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_lighting)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_lighting)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_rainy)
             }
             "rain"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_rain)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_rain)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_rainy)
             }
             "snow"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_snow)
-                holder.recordWeatherBackground.setImageResource(R.color.colorPrimary)
-                //holder.recordWeatherBackground.setImageResource(R.drawable.weather_snow)
+//                holder.recordWeatherBackground.setImageResource(R.drawable.back_snowy)
             }
         }
 
