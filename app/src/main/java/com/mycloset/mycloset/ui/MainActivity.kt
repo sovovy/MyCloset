@@ -48,11 +48,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(!SharedPreferenceController.sharedPreferenceController.getFirst(this)){
-            SharedPreferenceController.sharedPreferenceController.setFirst(this, true)
-            startActivity(Intent(this, SelectActivity::class.java))
-        }
-
         addFragment(TodayFragment())
 
         main_today_iv.isSelected = true

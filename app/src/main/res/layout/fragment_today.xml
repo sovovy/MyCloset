@@ -172,6 +172,7 @@
             android:fontFamily="@font/nanum_b"/>
     </android.support.constraint.ConstraintLayout>
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/today_card_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"

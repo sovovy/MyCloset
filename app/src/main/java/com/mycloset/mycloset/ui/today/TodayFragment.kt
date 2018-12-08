@@ -33,6 +33,15 @@ class TodayFragment : Fragment(), View.OnClickListener{
         when(v){
             today_add_ib -> startActivity(Intent(activity, AddActivity::class.java))
             today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
+            else -> {
+                // column 선택시 색상 변경
+                val idx : Int = today_column_rv.getChildAdapterPosition(v)
+                for(i in 0 until columnItems.size){
+                    columnItems[i].selected = false
+                }
+                columnItems[idx].selected = true
+                columnAdapter.notifyDataSetChanged()
+            }
         }
     }
 
@@ -56,9 +65,10 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
         // api 클래스에 정리된 데이터를 가져오기
         for(time in api.start .. api.end step 3){
-            columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time)))
+            columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time), false))
         }
         columnAdapter = ColumnAdapter(columnItems)
+        columnAdapter.setOnItemClickListener(this)
         val llm = LinearLayoutManager(context)
         llm.orientation = RecyclerView.HORIZONTAL
         v.today_column_rv.layoutManager = llm
