@@ -1,10 +1,13 @@
 package com.mycloset.mycloset.ui.record
 
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.mycloset.mycloset.R
+import com.mycloset.mycloset.ui.edit.EditActivity
 
 class RecordViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
     var recordDate : TextView = itemView!!.findViewById(R.id.item_tv_date) as TextView              // 오늘 날짜

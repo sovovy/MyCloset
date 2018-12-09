@@ -7,18 +7,14 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.MainActivity
 import com.mycloset.mycloset.ui.record.RecordItem
 import io.realm.Realm
-import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_add.*
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class AddActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var realm: Realm
@@ -35,6 +31,9 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_add)
         add_check_ib.setOnClickListener(this)
         Realm.init(this)
+
+        // 지금 날씨상태, 온도, 체감온도에 맞는 데이터 띄우기
+
     }
 
 
@@ -47,10 +46,11 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
                     // Add a recordItem
                     val recordItem = RecordItem(realm.where(RecordItem::class.java).findAll().size,
                             formatted,   // 오늘 날짜
-                            add_timePicker_tv.text.toString().toInt(),
-                            "sunny",
-                            add_temper_tv.text.toString().substring(0,add_temper_tv.text.length-1).toInt(),
-                            add_effectiveTemper_tv.text.toString().substring(0,add_effectiveTemper_tv.text.length-1).toInt(),
+                            //
+                            add_timePicker_tv.text.toString().toInt(),  //
+                            "sunny",  //
+                            add_temper_tv.text.toString().substring(0,add_temper_tv.text.length-1).toInt(),  //
+                            add_effectiveTemper_tv.text.toString().substring(0,add_effectiveTemper_tv.text.length-1).toInt(), //
                             add_outer_et.text.toString(),
                             add_top_et.text.toString(),
                             add_bottom_et.text.toString(),
