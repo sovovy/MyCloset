@@ -57,11 +57,14 @@ class RecordFragment : Fragment() {
         v.record_rv.adapter = recordAdapter
 
 
-        // card를 선택하면 editActivity 띄워주기
+        // card를 선택하면 editActivity로 이동
         v.record_rv.addOnItemTouchListener(RecyclerTouchListener(context!!, v.record_rv, object : ClickListener {
 
             override fun onClick(view: View, position: Int) {
                 val nextIntent = Intent(context, EditActivity::class.java)
+                Log.d("cardView idx", v.record_rv.indexOfChild(view).toString())
+                nextIntent.putExtra("realmdb idx", v.record_rv.indexOfChild(view))
+//                nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
                 startActivity(nextIntent)
             }
 

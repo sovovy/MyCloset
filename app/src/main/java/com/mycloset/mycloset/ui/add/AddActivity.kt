@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter
 class AddActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var realm: Realm
 
+    // 오늘 날짜 불러오기
     @RequiresApi(Build.VERSION_CODES.O)
     val now = LocalDateTime.now()
     @RequiresApi(Build.VERSION_CODES.O)
