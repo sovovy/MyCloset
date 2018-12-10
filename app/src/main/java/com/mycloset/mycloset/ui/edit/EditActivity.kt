@@ -8,7 +8,6 @@ import com.mycloset.mycloset.ui.record.RecordItem
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_edit.*
-import kotlinx.android.synthetic.main.fragment_record.view.*
 
 class EditActivity : AppCompatActivity() {
 
@@ -24,42 +23,42 @@ class EditActivity : AppCompatActivity() {
 
 
         // edit.xml에 cardView[idx]에 해당하는 값 띄우기
-        Realm.init(this)
-        recordRealm = Realm.getDefaultInstance()
-        val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
+//        Realm.init(this)
+//        recordRealm = Realm.getDefaultInstance()
+//        val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
 
-        for(record in resultsRecord) {
-            if(record.idx == realmIdx) {
-                edit_time_tv.text = record.date
-
-                when(record.weather){
-                    "sunny"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_sun)
-                    }
-                    "cloud"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_cloud)
-                    }
-                    "cloud2"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_cloud_2)
-                    }
-                    "lighting"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_lighting)
-                    }
-                    "rain"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_rain)
-                    }
-                    "snow"->{
-                        edit_weather_iv.setImageResource(R.drawable.weather_snow)
-                    }
-                }
-                edit_temper_tv.text = record.temper.toString()
-                edit_effectiveTemper_tv.text = record.temper.toString()
-                edit_outer_et.setText(record.outer)
-                edit_top_et.setText(record.top)
-                edit_bottom_et.setText(record.bottom)
-                edit_memo_et.setText(record.memo)
-            }
-        }
+//        for(record in resultsRecord) {
+//            if(record.idx == realmIdx) {
+//                edit_time_tv.text = record.date
+//
+//                when(record.weather){
+//                    "sunny"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_sun)
+//                    }
+//                    "cloud"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_cloud)
+//                    }
+//                    "cloud2"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_cloud_2)
+//                    }
+//                    "lighting"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_lighting)
+//                    }
+//                    "rain"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_rain)
+//                    }
+//                    "snow"->{
+//                        edit_weather_iv.setImageResource(R.drawable.weather_snow)
+//                    }
+//                }
+//                edit_temper_tv.text = record.temper.toString()
+//                edit_effectiveTemper_tv.text = record.temper.toString()
+//                edit_outer_et.setText(record.outer)
+//                edit_top_et.setText(record.top)
+//                edit_bottom_et.setText(record.bottom)
+//                edit_memo_et.setText(record.memo)
+//            }
+//        }
     }
 
     // edit_check_ib button을 누른 경우 db에 수정한 값이 저장됨
