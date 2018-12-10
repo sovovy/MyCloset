@@ -25,6 +25,7 @@ class RecordFragment : Fragment(), View.OnClickListener {
         val nextIntent = Intent(context, EditActivity::class.java)
         Log.d("cardView idx", idx.toString())
         nextIntent.putExtra("realmdb idx", idx)
+//        nextIntent.putExtra("recordItems", recordItems)
 //                nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
         startActivity(nextIntent)
     }
@@ -38,7 +39,7 @@ class RecordFragment : Fragment(), View.OnClickListener {
 
         recordItems = ArrayList()
 
-        var resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
+        val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
         Log.d("resultsRecord size: ",resultsRecord.size.toString())
 
         // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
