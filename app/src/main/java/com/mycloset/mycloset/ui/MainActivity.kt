@@ -14,6 +14,7 @@ import com.mycloset.mycloset.ui.setting.SelectActivity
 import com.mycloset.mycloset.ui.setting.SettingFragment
 import com.mycloset.mycloset.ui.today.TodayFragment
 import com.mycloset.mycloset.util.SharedPreferenceController
+import com.mycloset.mycloset.util.TodayWeather
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 main_setting_iv.isSelected = false
             }
             main_record_iv->{
+                TodayWeather.flag = true
                 replaceFragment(RecordFragment())
                 main_today_iv.isSelected = false
                 main_record_iv.isSelected = true
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addFragment(TodayFragment())
+        if(TodayWeather.flag == true)
+            addFragment(RecordFragment())
+        else
+            addFragment(TodayFragment())
 
         main_today_iv.isSelected = true
 

@@ -11,8 +11,9 @@ import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
+import com.mycloset.mycloset.ui.MainActivity
 
-class EditActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var recordRealm: Realm
 
@@ -21,6 +22,7 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+        edit_check_ib.setOnClickListener(this)
 
         // intent로 넘어온 idx 받기(실제 realm idx는 아님;;)
         val realmIdx:Int = intent.getIntExtra("realm idx",0)
@@ -57,7 +59,7 @@ class EditActivity : AppCompatActivity() {
                     }
                 }
                 edit_temper_tv.text = record.temper.toString()
-                edit_effectiveTemper_tv.text = record.temper.toString()
+                edit_effectiveTemper_tv.text = record.feel.toString()
                 edit_outer_et.setText(record.outer)
                 edit_top_et.setText(record.top)
                 edit_bottom_et.setText(record.bottom)
@@ -67,18 +69,16 @@ class EditActivity : AppCompatActivity() {
     }
 
     // edit_check_ib button을 누른 경우 db에 수정한 값이 저장됨
-    fun onClick(v: View?) {
-
-
+    override fun onClick(v: View?) {
         when(v) {
             edit_check_ib -> Realm.getDefaultInstance().use { realm ->
 
                 // 현재 activity에 있는 값으로 update
-                realm.executeTransaction { _ ->
+                realm.executeTransaction { realm ->
                     // intent로 넘어온 idx 받기(실제 realm idx는 아님;; cardView idx임)
                     val realmIdx: Int = intent.getIntExtra("realm idx",0)
-
                     val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
+                    Log.d("asdf",realmIdx.toString())
 
                     //
                     for(record in resultsRecord) {
@@ -95,11 +95,11 @@ class EditActivity : AppCompatActivity() {
                                     edit_memo_et.text.toString())
 
                             realm.copyToRealmOrUpdate(recordItem)
-                            break
+//                            break
                         }
                     }
                 }
-                val goRecordFragment = Intent(this, RecordFragment::class.java)
+                val goRecordFragment = Intent(this, MainActivity::class.java)
                 startActivity(goRecordFragment)
 
             }
