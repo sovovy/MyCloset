@@ -1,5 +1,6 @@
 package com.mycloset.mycloset.network
 
+import android.util.Log
 import retrofit2.Call
 import java.text.SimpleDateFormat
 import java.util.*
@@ -63,10 +64,11 @@ class WeatherApi {
             setWeather(getWeather.execute().body().response.body.items.item, 9, 21)
         }else{
             // 현재 시간이 23시 10분 ~ 23시 59분
-            // : 오늘 날짜 0200에서 0300~0600
+            // : 오늘 날짜 2300에서 0600~0600
             // : 오늘 날짜 0500에서 0900~2100
+            start = 6
             getWeather = networkService.getWeather(key, today, "0200", nx, ny, 1, 30,"json")
-            setWeather(getWeather.execute().body().response.body.items.item, 3, 6)
+            setWeather(getWeather.execute().body().response.body.items.item, 6, 6)
             getWeather = networkService.getWeather(key, today, "0500", nx, ny, 1, 100,"json")
             setWeather(getWeather.execute().body().response.body.items.item, 9, 21)
         }

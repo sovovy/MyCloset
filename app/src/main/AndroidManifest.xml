@@ -21,9 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.setting.SelectGuActivity"></activity>
+        <activity android:name=".ui.setting.SelectGuActivity" />
         <activity android:name=".ui.theday.ThedayActivity" />
-        <activity android:name=".ui.edit.EditActivity"></activity>
+        <activity android:name=".ui.edit.EditActivity" />
+        <activity android:name=".ui.setting.TemperActivity" />
+        <activity android:name=".ui.setting.questionActivity" />
+        <activity android:name=".ui.setting.QuestionActivity"></activity>
     </application>
 
 </manifest>

@@ -15,10 +15,19 @@ import kotlinx.android.synthetic.main.fragment_setting.view.*
 class SettingFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val v = inflater.inflate(R.layout.fragment_setting,container,false)
 
         v.setting_location_constraint.setOnClickListener {
             startActivity(Intent(activity, SelectActivity::class.java))
+        }
+
+        v.setting_tempError_constraint.setOnClickListener {
+            startActivity(Intent(activity, TemperActivity::class.java))
+        }
+
+        v.setting_question_constraint.setOnClickListener {
+            startActivity(Intent(activity, QuestionActivity::class.java))
         }
         return v
     }

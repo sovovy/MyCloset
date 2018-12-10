@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.QuestionActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/question_title_relative"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/actionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/nanum_eb"
+            android:textColor="@color/titleText"
+            android:text="문의" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background ="@color/basicLine"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/wow"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/question_title_relative"
+        android:paddingTop="15.5dp">
+
+        <TextView
+            android:id="@+id/question_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_setting"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:lineSpacingExtra="2sp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/nanum_b"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/question_title_tv"
+            android:text="는"
+            android:textSize="15sp"
+            android:lineSpacingExtra="2sp"
+            android:fontFamily="@font/nanum_b"
+            android:textColor="#000000"
+            />
+
+        <TextView
+            android:id="@+id/question_ayoungi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/question_title_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:text="한국항공대학교 &lt;모바일 SW 스튜디오&gt;"
+            android:textSize="15sp"
+            android:lineSpacingExtra="2sp"
+            android:fontFamily="@font/nanum_b"
+            android:textColor="#001e6a"
+            />
+
+        <TextView
+            android:id="@+id/miwou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/question_ayoungi"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:text="텀프로젝트로 제작된 어플리케이션입니다."
+            android:textSize="15sp"
+            android:lineSpacingExtra="2sp"
+            android:fontFamily="@font/nanum_b"
+            android:textColor="#000000"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background ="@color/basicLine"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="@id/wow" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/sylinder"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/wow"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/imjaaaaaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/nanum_b"
+            android:lineSpacingExtra="2sp"
+            android:text="문의:"
+            android:textColor="#c15a5a"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/imjaaaaaa"
+            android:fontFamily="@font/nanum_b"
+            android:lineSpacingExtra="2sp"
+            android:text="sovovy@gmail.com"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background ="@color/basicLine"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="@id/sylinder"/>
+</android.support.constraint.ConstraintLayout>
