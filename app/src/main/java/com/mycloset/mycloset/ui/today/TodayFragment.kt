@@ -37,7 +37,11 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         when(v){
-            today_add_ib -> startActivity(Intent(activity, AddActivity::class.java))
+            today_add_ib -> {
+                startActivity(Intent(activity, AddActivity::class.java))
+//                Intent(activity, AddActivity::class.java).putExtra("TodayFragment Time",time)
+            }
+
             today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
             else -> {
                 // column item이면

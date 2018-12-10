@@ -1,4 +1,4 @@
-package com.mycloset.mycloset.ui
+package com.mycloset.mycloset.util
 
 import io.realm.DynamicRealm
 import io.realm.RealmMigration

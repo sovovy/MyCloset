@@ -22,12 +22,11 @@ class RecordFragment : Fragment(), View.OnClickListener {
     lateinit var recordItems: ArrayList<RecordItem>
 
     override fun onClick(v: View?) {
-        val idx: Int = record_rv.getChildAdapterPosition(v)
+        val idx: Int = record_rv.indexOfChild(v)
         val nextIntent = Intent(context, EditActivity::class.java)
         Log.d("cardView idx", idx.toString())
-        nextIntent.putExtra("realmdb idx", idx)
-//        nextIntent.putExtra("recordItems", recordItems)
-//                nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
+        nextIntent.putExtra("realm idx", idx)
+//        nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
         startActivity(nextIntent)
     }
 

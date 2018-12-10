@@ -47,7 +47,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
                     // Add a recordItem
                     val recordItem = RecordItem(realm.where(RecordItem::class.java).findAll().size,
                             formatted,   // 오늘 날짜
-                            //
+                            // (시간, 상태, 기온, 체감온도)를 todayfragment에서 가져와야함
                             add_timePicker_tv.text.toString().toInt(),  //
                             "sunny",  //
                             add_temper_tv.text.toString().substring(0,add_temper_tv.text.length-1).toInt(),  //
