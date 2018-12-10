@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.network.WeatherApi
-import com.mycloset.mycloset.ui.MainActivity
 import com.mycloset.mycloset.ui.add.AddActivity
 import com.mycloset.mycloset.ui.setting.SelectActivity
 import com.mycloset.mycloset.ui.today.recyclerview.ColumnAdapter
@@ -21,13 +20,19 @@ import com.mycloset.mycloset.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_today.*
 import kotlinx.android.synthetic.main.fragment_today.view.*
 import android.os.StrictMode
-
+import android.support.v7.widget.GridLayoutManager
+import com.mycloset.mycloset.ui.record.RecordAdapter
+import com.mycloset.mycloset.ui.record.RecordItem
 
 
 class TodayFragment : Fragment(), View.OnClickListener{
     lateinit var columnItems : ArrayList<ColumnItem>
     lateinit var columnAdapter: ColumnAdapter
+    lateinit var recordItems : ArrayList<RecordItem>
+    lateinit var recordAdapter: RecordAdapter
     val api = WeatherApi()
+    // 선택한 column의 체감 온도
+    var selectedFeel = 0
 
     override fun onClick(v: View?) {
         when(v){
@@ -42,6 +47,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                         columnItems[i].selected = false
                     }
                     columnItems[idx].selected = true
+                    selectedFeel = columnItems[idx].sensible
                     columnAdapter.notifyDataSetChanged()
                 }
             }
@@ -59,6 +65,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
         // recyclerView
         columnItems = ArrayList()
+        recordItems = ArrayList()
 
         // 안드로이드 main thread에서 네트워크(동기적) 통신을 할 수 있도록
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
@@ -70,12 +77,22 @@ class TodayFragment : Fragment(), View.OnClickListener{
         for(time in api.start .. api.end step 3){
             columnItems.add(ColumnItem(time, api.getWeather(time), api.getTemper(time), api.getFeel(time), false))
         }
+        // column RecyclerView 세팅
         columnAdapter = ColumnAdapter(columnItems)
         columnAdapter.setOnItemClickListener(this)
         val llm = LinearLayoutManager(context)
         llm.orientation = RecyclerView.HORIZONTAL
         v.today_column_rv.layoutManager = llm
         v.today_column_rv.adapter = columnAdapter
+
+        // 체감 온도에 맞게 record item 가져오기
+
+        // record RecyclerView 세팅
+        recordAdapter = RecordAdapter(recordItems)
+        recordAdapter.setOnItemClickListener(this)
+        val glm = GridLayoutManager(context, 2)
+        v.today_card_rv.layoutManager = glm
+        v.today_card_rv.adapter = recordAdapter
 
         return v
     }

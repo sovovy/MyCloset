@@ -12,13 +12,22 @@ import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.edit.EditActivity
 import io.realm.Realm
 import io.realm.RealmResults
+import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.fragment_record.view.*
 
-class RecordFragment : Fragment() {
-
+class RecordFragment : Fragment(), View.OnClickListener {
     lateinit var recordRealm: Realm
     lateinit var recordAdapter: RecordAdapter
     lateinit var recordItems: ArrayList<RecordItem>
+
+    override fun onClick(v: View?) {
+        val idx: Int = record_rv.getChildAdapterPosition(v)
+        val nextIntent = Intent(context, EditActivity::class.java)
+        Log.d("cardView idx", idx.toString())
+        nextIntent.putExtra("realmdb idx", idx)
+//                nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
+        startActivity(nextIntent)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_record,container,false)
@@ -61,11 +70,7 @@ class RecordFragment : Fragment() {
         v.record_rv.addOnItemTouchListener(RecyclerTouchListener(context!!, v.record_rv, object : ClickListener {
 
             override fun onClick(view: View, position: Int) {
-                val nextIntent = Intent(context, EditActivity::class.java)
-                Log.d("cardView idx", v.record_rv.indexOfChild(view).toString())
-                nextIntent.putExtra("realmdb idx", v.record_rv.indexOfChild(view))
-//                nextIntent.putExtra("cardView",recordItems[v.record_rv.indexOfChild(view)])
-                startActivity(nextIntent)
+
             }
 
         }))
