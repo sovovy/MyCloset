@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/record_rl"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:background="@color/actionBar" >
 
         <TextView
@@ -65,13 +65,12 @@
         android:id="@+id/record_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5.1dp"
-        android:visibility="gone"
         android:gravity="center_horizontal"
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/record_rl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="57dp"
         app:spanCount="2">
 
     </android.support.v7.widget.RecyclerView>
