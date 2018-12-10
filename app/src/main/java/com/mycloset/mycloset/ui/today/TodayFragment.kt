@@ -69,6 +69,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                         today_info_tv.visibility = View.VISIBLE
                     }
 
+                    recordItems.removeAll(recordItems)
                     // db에 저장된 모든 record들을 recordItem arrayList에 저장
                     for(record in resultsRecord) {
                         recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
