@@ -143,4 +143,12 @@
         android:background ="@color/basicLine"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="@id/sylinder"/>
+    <ImageView
+        android:id="@+id/dvlp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:src="@drawable/dvl"
+        app:layout_constraintTop_toBottomOf="@id/sylinder"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>
