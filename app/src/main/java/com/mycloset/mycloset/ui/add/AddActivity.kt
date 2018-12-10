@@ -17,11 +17,16 @@ import java.util.*
 class AddActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var realm: Realm
     lateinit var weather: String
+    var hour : Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
+
         add_check_ib.setOnClickListener(this)
+        add_timeDecrement_bt.setOnClickListener(this)
+        add_timeIncrement_bt.setOnClickListener(this)
+
         Realm.init(this)
         realm = Realm.getDefaultInstance()
 
@@ -30,30 +35,13 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         if(TodayWeather.selected != -1){
             idx = TodayWeather.selected
             TodayWeather.selected = -1
-            add_timePicker_tv.text = ((idx+1)*3).toString() + "시"
+            hour = ((idx+1)*3)
+            add_timePicker_tv.text = hour.toString() + "시"
         }else{
-            add_timePicker_tv.text = TodayWeather.start.toString() + "시"
+            hour = TodayWeather.start
+            add_timePicker_tv.text = hour.toString() + "시"
         }
-        weather =TodayWeather.weather[idx]
-        add_temper_tv.text = TodayWeather.temp[idx].toString() + "º"
-        add_effectiveTemper_tv.text = TodayWeather.feel[idx].toString() + "º"
-        when(weather) {
-            "sunny" -> {
-                add_weather_iv.setImageResource(R.drawable.weather_sun)
-            }
-            "little cloudy" -> {
-                add_weather_iv.setImageResource(R.drawable.weather_cloud)
-            }
-            "cloudy" -> {
-                add_weather_iv.setImageResource(R.drawable.weather_cloud_2)
-            }
-            "rainy" -> {
-                add_weather_iv.setImageResource(R.drawable.weather_rain)
-            }
-            else -> {
-                add_weather_iv.setImageResource(R.drawable.weather_snow)
-            }
-        }
+        setWeatherData(idx)
     }
 
     // add_check_ib ImageButton을 누른 경우 db에 새로 저장
@@ -77,6 +65,20 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(goMain)
                 finish()
             }
+            add_timeDecrement_bt -> {
+                if (hour > TodayWeather.start){
+                    hour -= 3
+                    add_timePicker_tv.text = hour.toString() + "시"
+                    setWeatherData((hour-1)/3)
+                }
+            }
+            add_timeIncrement_bt -> {
+                if(hour < TodayWeather.end){
+                    hour += 3
+                    add_timePicker_tv.text = hour.toString() + "시"
+                    setWeatherData((hour-1)/3)
+                }
+            }
         }
     }
 
@@ -99,5 +101,28 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         realm.beginTransaction()
         realm.copyToRealm(recordItem)
         realm.commitTransaction()
+    }
+
+    fun setWeatherData(idx: Int){
+        weather =TodayWeather.weather[idx]
+        add_temper_tv.text = TodayWeather.temp[idx].toString() + "º"
+        add_effectiveTemper_tv.text = TodayWeather.feel[idx].toString() + "º"
+        when(weather) {
+            "sunny" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_sun)
+            }
+            "little cloudy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_cloud)
+            }
+            "cloudy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_cloud_2)
+            }
+            "rainy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_rain)
+            }
+            else -> {
+                add_weather_iv.setImageResource(R.drawable.weather_snow)
+            }
+        }
     }
 }
