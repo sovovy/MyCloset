@@ -24,17 +24,16 @@ class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
         holder.recordDate.text = recordItems[position].date
-
         when(recordItems[position].weather){
             "sunny"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_sun)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_sunny)
             }
-            "cloud"->{
+            "little cloudy"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_cloud)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_cloud)
             }
-            "cloud2"->{
+            "cloudy"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_cloud_2)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_cloud_2)
             }
@@ -42,11 +41,11 @@ class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapt
                 holder.recordWeather.setImageResource(R.drawable.weather_lighting)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_rainy)
             }
-            "rain"->{
+            "rainy"->{
                 holder.recordWeather.setImageResource(R.drawable.weather_rain)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_rainy)
             }
-            "snow"->{
+            else->{
                 holder.recordWeather.setImageResource(R.drawable.weather_snow)
                 holder.recordWeatherBackground.setImageResource(R.drawable.back_snowy)
             }

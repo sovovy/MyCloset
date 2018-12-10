@@ -13,14 +13,13 @@
         android:layout_marginBottom="13dp"
         android:layout_width="match_parent"
         android:layout_height="235dp"
-        card_view:cardCornerRadius="10dp"
+        app:cardCornerRadius="5dp"
         card_view:cardElevation="5dp"
         android:shadowDy="1"
         android:shadowRadius="6">
 
         <ImageView
             android:id="@+id/item_iv_background"
-            android:src="@drawable/ic_launcher_background"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:scaleType="fitXY"/>

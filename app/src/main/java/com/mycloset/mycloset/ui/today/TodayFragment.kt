@@ -20,8 +20,10 @@ import kotlinx.android.synthetic.main.fragment_today.*
 import kotlinx.android.synthetic.main.fragment_today.view.*
 import android.os.StrictMode
 import android.support.v7.widget.GridLayoutManager
+import android.text.Html
 import com.mycloset.mycloset.ui.record.RecordAdapter
 import com.mycloset.mycloset.ui.record.RecordItem
+import com.mycloset.mycloset.util.TodayWeather
 import io.realm.Realm
 import io.realm.RealmResults
 
@@ -38,8 +40,17 @@ class TodayFragment : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v){
             today_add_ib -> {
+                TodayWeather.start = api.start
+                TodayWeather.end = api.end
+                TodayWeather.weather.removeAll(TodayWeather.weather)
+                TodayWeather.temp.removeAll(TodayWeather.temp)
+                TodayWeather.feel.removeAll(TodayWeather.feel)
+                for(time in api.start .. api.end step 3){
+                    TodayWeather.weather.add(api.getWeather(time))
+                    TodayWeather.temp.add(api.getTemper(time))
+                    TodayWeather.feel.add(api.getFeel(time))
+                }
                 startActivity(Intent(activity, AddActivity::class.java))
-//                Intent(activity, AddActivity::class.java).putExtra("TodayFragment Time",time)
             }
 
             today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
@@ -48,6 +59,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                 if(today_column_rv.getChildPosition(v)!=-1) {
                     // column 선택시 색상 변경
                     val idx: Int = today_column_rv.getChildAdapterPosition(v)
+                    TodayWeather.selected = idx
                     for (i in 0 until columnItems.size) {
                         columnItems[i].selected = false
                     }
@@ -88,7 +100,8 @@ class TodayFragment : Fragment(), View.OnClickListener{
         val v = inflater.inflate(R.layout.fragment_today,container,false)
         // set title by location
         v.today_title_tv.text = SharedPreferenceController.sharedPreferenceController.getGu(context!!)+" ^~^"
-
+        // set info text by tempError
+        v.today_info_tv.text = Html.fromHtml("시간을 선택하면 체감 온도에 입었던<br/><br/>과거의 착장이 나옵니다 (온도 오차 ±" + SharedPreferenceController.sharedPreferenceController.getTempErr(context!!) + ")")
         // click listener attach
         v.today_add_ib.setOnClickListener(this)
         v.today_title_tv.setOnClickListener(this)
@@ -123,5 +136,15 @@ class TodayFragment : Fragment(), View.OnClickListener{
         v.today_card_rv.adapter = recordAdapter
 
         return v
+    }
+    fun getWeather(weather:ArrayList<Int>, start:Int, time:Int):String{
+        // time대의 날씨 상태 return
+        return when(weather[time/3-(start/3)]){
+            1 -> "sunny"
+            2 -> "little cloudy"
+            3 -> "cloudy"
+            4 -> "rainy"
+            else -> "snowy"
+        }
     }
 }
