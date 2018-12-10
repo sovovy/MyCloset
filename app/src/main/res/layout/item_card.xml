@@ -20,6 +20,7 @@
 
         <ImageView
             android:id="@+id/item_iv_background"
+            android:background="@drawable/back_sunny"
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:scaleType="fitXY"/>

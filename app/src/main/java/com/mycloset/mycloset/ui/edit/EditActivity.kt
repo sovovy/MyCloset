@@ -12,6 +12,7 @@ import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_edit.*
 import android.util.Log
 import com.mycloset.mycloset.ui.MainActivity
+import com.mycloset.mycloset.util.ToRecord
 
 class EditActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -71,8 +72,9 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
     // edit_check_ib button을 누른 경우 db에 수정한 값이 저장됨
     override fun onClick(v: View?) {
         when(v) {
-            edit_check_ib -> Realm.getDefaultInstance().use { realm ->
 
+            edit_check_ib -> Realm.getDefaultInstance().use { realm ->
+                ToRecord.flag = true
                 // 현재 activity에 있는 값으로 update
                 realm.executeTransaction { realm ->
                     // intent로 넘어온 idx 받기(실제 realm idx는 아님;; cardView idx임)

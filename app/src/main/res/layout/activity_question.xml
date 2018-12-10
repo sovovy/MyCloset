@@ -34,7 +34,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/wow"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/question_title_relative"
         android:paddingTop="15.5dp">
 
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name_setting"
-            android:textSize="15sp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             android:lineSpacingExtra="2sp"
             android:layout_margin="20dp"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/question_title_tv"
             android:text="는"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:lineSpacingExtra="2sp"
             android:fontFamily="@font/nanum_b"
             android:textColor="#000000"
@@ -72,7 +72,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="13dp"
             android:text="한국항공대학교 &lt;모바일 SW 스튜디오&gt;"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:lineSpacingExtra="2sp"
             android:fontFamily="@font/nanum_b"
             android:textColor="#001e6a"
@@ -87,12 +87,15 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="13dp"
             android:text="텀프로젝트로 제작된 어플리케이션입니다."
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:lineSpacingExtra="2sp"
             android:fontFamily="@font/nanum_b"
+            android:layout_marginBottom="15.5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/d"
             android:textColor="#000000"
             />
         <View
+            android:id="@+id/d"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background ="@color/basicLine"
@@ -117,9 +120,9 @@
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/nanum_b"
             android:lineSpacingExtra="2sp"
-            android:text="문의:"
+            android:text="문의: "
             android:textColor="#c15a5a"
-            android:textSize="15sp"/>
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -130,7 +133,7 @@
             android:lineSpacingExtra="2sp"
             android:text="sovovy@gmail.com"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="17sp" />
 
     </RelativeLayout>
 

@@ -8,6 +8,8 @@ object TodayWeather{
     var weather = ArrayList<String>()
     var temp = ArrayList<Int>()
     var feel = ArrayList<Int>()
+}
 
+object ToRecord{
     var flag = false
 }
