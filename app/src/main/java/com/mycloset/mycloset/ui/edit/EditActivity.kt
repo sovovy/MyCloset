@@ -43,24 +43,24 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                     "sunny"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_sun)
                     }
-                    "cloud"->{
+                    "little cloudy"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_cloud)
                     }
-                    "cloud2"->{
+                    "cloudy"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_cloud_2)
                     }
                     "lighting"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_lighting)
                     }
-                    "rain"->{
+                    "rainy"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_rain)
                     }
-                    "snow"->{
+                    "snowy"->{
                         edit_weather_iv.setImageResource(R.drawable.weather_snow)
                     }
                 }
-                edit_temper_tv.text = record.temper.toString()
-                edit_effectiveTemper_tv.text = record.feel.toString()
+                edit_temper_tv.text = record.temper.toString()+"º"
+                edit_effectiveTemper_tv.text = record.feel.toString()+"º"
                 edit_outer_et.setText(record.outer)
                 edit_top_et.setText(record.top)
                 edit_bottom_et.setText(record.bottom)

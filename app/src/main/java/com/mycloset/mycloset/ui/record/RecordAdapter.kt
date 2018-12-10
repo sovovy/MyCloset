@@ -51,8 +51,8 @@ class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapt
             }
         }
 
-        holder.recordTemper.text = recordItems[position].temper.toString()
-        holder.recordFeel.text = recordItems[position].feel.toString()
+        holder.recordTemper.text = recordItems[position].temper.toString()+"º"
+        holder.recordFeel.text = recordItems[position].feel.toString()+"º"
         holder.recordOuter.text = recordItems[position].outer
         holder.recordTop.text = recordItems[position].top
         holder.recordBottom.text = recordItems[position].bottom
