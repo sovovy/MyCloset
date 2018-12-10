@@ -30,7 +30,7 @@ class SelectActivity :AppCompatActivity() {
         setContentView(R.layout.activity_select)
 
         excel = findViewById(R.id.select_si_lv)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
+        arrayAdapter = ArrayAdapter(this, R.layout.item_listview)
 
         getExcel()
     }
@@ -77,7 +77,5 @@ class SelectActivity :AppCompatActivity() {
                 startActivity(goGu)
             }
         }
-
     }
-
 }

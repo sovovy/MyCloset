@@ -57,6 +57,18 @@ class SharedPreferenceController private constructor() {
         return pref.getString("GU","")
     }
 
+    fun setTempErr(context: Context, err : Int){
+        val pref = context.getSharedPreferences("ERR", Activity.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt("ERR", err)
+        editor.commit()
+    }
+
+    fun getTempErr(context: Context) : Int {
+        val pref = context.getSharedPreferences("ERR", Activity.MODE_PRIVATE)
+        return pref.getInt("ERR", 3)
+    }
+
     companion object {
         private var SINGLETON_INSTANCE: SharedPreferenceController? = null
 

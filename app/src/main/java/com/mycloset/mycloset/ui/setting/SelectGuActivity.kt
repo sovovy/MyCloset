@@ -26,7 +26,7 @@ class SelectGuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_gu)
 
         gu = findViewById(R.id.select_gu_lv)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
+        arrayAdapter = ArrayAdapter(this, R.layout.item_listview)
 
         var workbook : Workbook
         var sheet : Sheet
@@ -67,6 +67,5 @@ class SelectGuActivity : AppCompatActivity() {
             val goMain = Intent(this, MainActivity::class.java)
             startActivity(goMain)
         }
-
     }
 }
