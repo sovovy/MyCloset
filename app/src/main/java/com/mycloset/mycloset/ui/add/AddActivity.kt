@@ -29,6 +29,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         // 지금 날씨상태, 온도, 체감온도에 맞는 데이터 띄우기
         if(TodayWeather.selected != -1){
             idx = TodayWeather.selected
+            TodayWeather.selected = -1
             add_timePicker_tv.text = ((idx+1)*3).toString() + "시"
         }else{
             add_timePicker_tv.text = TodayWeather.start.toString() + "시"
@@ -60,7 +61,6 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         when (v) {
             add_check_ib -> {
                 // Add a recordItem
-                Log.d("asdf",weather)
                 insertRecord(realm.where(RecordItem::class.java).findAll().size,
                         SimpleDateFormat("yyyy-MM-dd").format(Date()).toString(),   // 오늘 날짜
                         // (시간, 상태, 기온, 체감온도)를 todayfragment에서 가져와야함
@@ -75,6 +75,7 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
 
                 val goMain = Intent(this, MainActivity::class.java)
                 startActivity(goMain)
+                finish()
             }
         }
     }

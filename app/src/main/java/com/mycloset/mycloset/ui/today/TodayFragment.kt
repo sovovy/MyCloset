@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_today.view.*
 import android.os.StrictMode
 import android.support.v7.widget.GridLayoutManager
 import android.text.Html
+import android.util.Log
+import com.mycloset.mycloset.ui.edit.EditActivity
 import com.mycloset.mycloset.ui.record.RecordAdapter
 import com.mycloset.mycloset.ui.record.RecordItem
 import com.mycloset.mycloset.util.TodayWeather
@@ -56,7 +58,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
             today_title_tv -> startActivity(Intent(activity, SelectActivity::class.java))
             else -> {
                 // column item이면
-                if(today_column_rv.getChildPosition(v)!=-1) {
+                if(today_column_rv.indexOfChild(v)!=-1) {
                     // column 선택시 색상 변경
                     val idx: Int = today_column_rv.getChildAdapterPosition(v)
                     TodayWeather.selected = idx
@@ -72,7 +74,8 @@ class TodayFragment : Fragment(), View.OnClickListener{
                     Realm.init(context)
                     recordRealm = Realm.getDefaultInstance()
 
-                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).between("feel", selectedFeel-5, selectedFeel+5).findAll()
+                    var tempErr = SharedPreferenceController.sharedPreferenceController.getTempErr(v!!.context)
+                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).between("feel", selectedFeel-tempErr, selectedFeel+tempErr).findAll()
 
                     // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
                     if(resultsRecord.size>0) {
@@ -91,8 +94,11 @@ class TodayFragment : Fragment(), View.OnClickListener{
                         recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
                                 record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
                     }
-                }else if(today_card_rv.getChildPosition(v)!=-1){    // card item 이면
-
+                }else if(today_card_rv.indexOfChild(v)!=-1){    // card item 이면
+                    val idx: Int = today_card_rv.indexOfChild(v)
+                    val nextIntent = Intent(context, EditActivity::class.java)
+                    nextIntent.putExtra("realm idx", idx)
+                    startActivity(nextIntent)
                 }
             }
         }

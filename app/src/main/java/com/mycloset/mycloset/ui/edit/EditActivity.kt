@@ -103,7 +103,7 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 val goRecordFragment = Intent(this, MainActivity::class.java)
                 startActivity(goRecordFragment)
-
+                finish()
             }
 
         }
