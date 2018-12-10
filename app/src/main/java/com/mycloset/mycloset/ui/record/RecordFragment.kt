@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.fragment_record.view.*
 
 class RecordFragment : Fragment(), View.OnClickListener {
+    lateinit var recordItem : RecordItem
     lateinit var recordRealm: Realm
     lateinit var recordAdapter: RecordAdapter
     lateinit var recordItems: ArrayList<RecordItem>
@@ -35,6 +36,17 @@ class RecordFragment : Fragment(), View.OnClickListener {
         // realm 초기화
         Realm.init(context)
         recordRealm = Realm.getDefaultInstance()
+
+        // test) DB에 임시값
+        recordRealm.beginTransaction()
+        recordRealm.where(RecordItem::class.java!!).findAll().deleteAllFromRealm()
+        recordRealm.commitTransaction()
+        insertPeopleList(0, "2018-12-01",3, "sunny", -1, -9,"후드집업","후드티","츄리닝","씨발")
+        insertPeopleList(1, "2018-12-01",3, "sunny", -1, -9,"후드집업","후드티","츄리닝","씨발")
+        insertPeopleList(2, "2018-12-01",3, "sunny", -1, -9,"후드집업","후드티","츄리닝","씨발")
+        insertPeopleList(3, "2018-12-01",3, "sunny", -1, -9,"후드집업","후드티","츄리닝","씨발")
+        insertPeopleList(4, "2018-12-01",3, "sunny", -1, -9,"후드집업","후드티","츄리닝","씨발")
+        insertPeopleList(5, "2018-12-01",3, "sunny", -1, 100,"후드집업","후드티","츄리닝","씨발")
 
         recordItems = ArrayList()
 
@@ -60,6 +72,7 @@ class RecordFragment : Fragment(), View.OnClickListener {
 
 
         recordAdapter = RecordAdapter(recordItems)
+        recordAdapter.setOnItemClickListener(this)
         val glm = GridLayoutManager(context,2)
         glm.orientation = RecyclerView.VERTICAL
         v.record_rv.layoutManager = glm
@@ -118,5 +131,26 @@ class RecordFragment : Fragment(), View.OnClickListener {
         override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
 
         }
+    }
+
+    // test) 임시 데이터 추가하기 위해
+    private fun insertPeopleList(idx:Int = 0, date:String = " ", time:Int = 0, weather:String = " ",
+                                 temper:Int = 0, feel:Int = 0, outer:String? = null,
+                                 top:String? = null, bottom:String? = null, memo:String? = null) {
+        recordItem = RecordItem()
+
+        recordItem.idx = idx
+        recordItem.date = date
+        recordItem.time = time
+        recordItem.temper = temper
+        recordItem.feel = feel
+        recordItem.outer = outer
+        recordItem.top = top
+        recordItem.bottom = bottom
+        recordItem.memo = memo
+
+        recordRealm.beginTransaction()
+        recordRealm.copyToRealm(recordItem)
+        recordRealm.commitTransaction()
     }
 }

@@ -3,7 +3,6 @@ package com.mycloset.mycloset.ui.today
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -23,9 +22,11 @@ import android.os.StrictMode
 import android.support.v7.widget.GridLayoutManager
 import com.mycloset.mycloset.ui.record.RecordAdapter
 import com.mycloset.mycloset.ui.record.RecordItem
-
+import io.realm.Realm
+import io.realm.RealmResults
 
 class TodayFragment : Fragment(), View.OnClickListener{
+    lateinit var recordRealm: Realm
     lateinit var columnItems : ArrayList<ColumnItem>
     lateinit var columnAdapter: ColumnAdapter
     lateinit var recordItems : ArrayList<RecordItem>
@@ -49,6 +50,30 @@ class TodayFragment : Fragment(), View.OnClickListener{
                     columnItems[idx].selected = true
                     selectedFeel = columnItems[idx].sensible
                     columnAdapter.notifyDataSetChanged()
+
+                    // 체감 온도에 맞게 record item 가져오기
+                    // realm 초기화
+                    Realm.init(context)
+                    recordRealm = Realm.getDefaultInstance()
+
+                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).between("feel", selectedFeel-5, selectedFeel+5).findAll()
+
+                    // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
+                    if(resultsRecord.size>0) {
+                        today_card_rv.visibility = View.VISIBLE
+                        today_info_iv.visibility = View.GONE
+                        today_info_tv.visibility = View.GONE
+                    } else {
+                        today_card_rv.visibility = View.GONE
+                        today_info_iv.visibility = View.VISIBLE
+                        today_info_tv.visibility = View.VISIBLE
+                    }
+
+                    // db에 저장된 모든 record들을 recordItem arrayList에 저장
+                    for(record in resultsRecord) {
+                        recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
+                                record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
+                    }
                 }
             }
         }
@@ -84,8 +109,6 @@ class TodayFragment : Fragment(), View.OnClickListener{
         llm.orientation = RecyclerView.HORIZONTAL
         v.today_column_rv.layoutManager = llm
         v.today_column_rv.adapter = columnAdapter
-
-        // 체감 온도에 맞게 record item 가져오기
 
         // record RecyclerView 세팅
         recordAdapter = RecordAdapter(recordItems)
