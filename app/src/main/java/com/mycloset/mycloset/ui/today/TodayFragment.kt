@@ -75,7 +75,8 @@ class TodayFragment : Fragment(), View.OnClickListener{
                     recordRealm = Realm.getDefaultInstance()
 
                     var tempErr = SharedPreferenceController.sharedPreferenceController.getTempErr(v!!.context)
-                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).between("feel", selectedFeel-tempErr, selectedFeel+tempErr).findAll()
+                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).greaterThanOrEqualTo("feel",selectedFeel-tempErr).lessThanOrEqualTo("feel",selectedFeel+tempErr).findAll()
+//                    between("feel", selectedFeel-tempErr, selectedFeel+tempErr).findAll()
 
                     // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
                     if(resultsRecord.size>0) {
@@ -94,6 +95,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                         recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
                                 record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
                     }
+                    recordAdapter.notifyDataSetChanged()
                 }else if(today_card_rv.indexOfChild(v)!=-1){    // card item 이면
                     val idx: Int = today_card_rv.indexOfChild(v)
                     val nextIntent = Intent(context, EditActivity::class.java)
