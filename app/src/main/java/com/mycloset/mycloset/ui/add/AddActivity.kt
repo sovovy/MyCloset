@@ -25,51 +25,33 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         Realm.init(this)
         realm = Realm.getDefaultInstance()
 
+        var idx = 0
         // 지금 날씨상태, 온도, 체감온도에 맞는 데이터 띄우기
         if(TodayWeather.selected != -1){
-            add_timePicker_tv.text = ((TodayWeather.selected+1)*3).toString() + "시"
-            weather =TodayWeather.weather[TodayWeather.selected]
-            when(weather) {
-                "sunny" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_sun)
-                }
-                "little cloudy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_cloud)
-                }
-                "cloudy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_cloud_2)
-                }
-                "rainy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_rain)
-                }
-                else -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_snow)
-                }
-            }
-            add_temper_tv.text = TodayWeather.temp[TodayWeather.selected].toString() + "º"
-            add_effectiveTemper_tv.text = TodayWeather.feel[TodayWeather.selected].toString() + "º"
+            idx = TodayWeather.selected
+            add_timePicker_tv.text = ((idx+1)*3).toString() + "시"
         }else{
             add_timePicker_tv.text = TodayWeather.start.toString() + "시"
-            weather =TodayWeather.weather[0]
-            when(weather) {
-                "sunny" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_sun)
-                }
-                "little cloudy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_cloud)
-                }
-                "cloudy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_cloud_2)
-                }
-                "rainy" -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_rain)
-                }
-                else -> {
-                    add_weather_iv.setImageResource(R.drawable.weather_snow)
-                }
+        }
+        weather =TodayWeather.weather[idx]
+        add_temper_tv.text = TodayWeather.temp[idx].toString() + "º"
+        add_effectiveTemper_tv.text = TodayWeather.feel[idx].toString() + "º"
+        when(weather) {
+            "sunny" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_sun)
             }
-            add_temper_tv.text = TodayWeather.temp[0].toString() + "º"
-            add_effectiveTemper_tv.text = TodayWeather.feel[0].toString() + "º"
+            "little cloudy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_cloud)
+            }
+            "cloudy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_cloud_2)
+            }
+            "rainy" -> {
+                add_weather_iv.setImageResource(R.drawable.weather_rain)
+            }
+            else -> {
+                add_weather_iv.setImageResource(R.drawable.weather_snow)
+            }
         }
     }
 

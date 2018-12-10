@@ -91,6 +91,8 @@ class TodayFragment : Fragment(), View.OnClickListener{
                         recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
                                 record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
                     }
+                }else if(today_card_rv.getChildPosition(v)!=-1){    // card item 이면
+
                 }
             }
         }
@@ -136,15 +138,5 @@ class TodayFragment : Fragment(), View.OnClickListener{
         v.today_card_rv.adapter = recordAdapter
 
         return v
-    }
-    fun getWeather(weather:ArrayList<Int>, start:Int, time:Int):String{
-        // time대의 날씨 상태 return
-        return when(weather[time/3-(start/3)]){
-            1 -> "sunny"
-            2 -> "little cloudy"
-            3 -> "cloudy"
-            4 -> "rainy"
-            else -> "snowy"
-        }
     }
 }
