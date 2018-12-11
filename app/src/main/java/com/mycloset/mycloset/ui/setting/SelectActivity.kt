@@ -75,6 +75,7 @@ class SelectActivity :AppCompatActivity() {
                 val goGu = Intent(this, SelectGuActivity::class.java)
                 goGu.putExtra("siName", siName)
                 startActivity(goGu)
+                finish()
             }
         }
     }

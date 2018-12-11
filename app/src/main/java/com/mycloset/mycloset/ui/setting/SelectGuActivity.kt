@@ -66,6 +66,7 @@ class SelectGuActivity : AppCompatActivity() {
 
             val goMain = Intent(this, MainActivity::class.java)
             startActivity(goMain)
+            finish()
         }
     }
 }
