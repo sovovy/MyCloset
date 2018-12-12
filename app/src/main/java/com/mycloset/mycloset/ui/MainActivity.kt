@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //        Realm.setDefaultConfiguration(config)
 
         // realm을 schemaVersion 2로 build
-        var config = RealmConfiguration.Builder().schemaVersion(2).build()
-        Realm.setDefaultConfiguration(config)
-        Realm.getDefaultInstance()
+//        var config = RealmConfiguration.Builder().schemaVersion(2).build()
+//        Realm.setDefaultConfiguration(config)
+//        Realm.getDefaultInstance()
 
 //        var recordItem:Realm
 //        recordItem = Realm.getDefaultInstance()

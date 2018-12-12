@@ -25,6 +25,7 @@ import android.util.Log
 import com.mycloset.mycloset.ui.edit.EditActivity
 import com.mycloset.mycloset.ui.record.RecordAdapter
 import com.mycloset.mycloset.ui.record.RecordItem
+import com.mycloset.mycloset.ui.record.RecordViewHolder
 import com.mycloset.mycloset.util.TodayWeather
 import io.realm.Realm
 import io.realm.RealmResults
@@ -97,9 +98,8 @@ class TodayFragment : Fragment(), View.OnClickListener{
                     }
                     recordAdapter.notifyDataSetChanged()
                 }else if(today_card_rv.indexOfChild(v)!=-1){    // card item 이면
-                    val idx: Int = today_card_rv.indexOfChild(v)
                     val nextIntent = Intent(context, EditActivity::class.java)
-                    nextIntent.putExtra("realm idx", idx)
+                    nextIntent.putExtra("realm idx", recordItems[today_card_rv.getChildAdapterPosition(v)].idx)
                     startActivity(nextIntent)
                 }
             }
