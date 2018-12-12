@@ -164,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_r"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textColor="#000000"
                 android:lineSpacingExtra="38sp"
                 app:layout_constraintStart_toEndOf="@+id/item_tv_top_"

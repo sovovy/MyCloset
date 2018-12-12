@@ -91,9 +91,9 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
                     recordItems.removeAll(recordItems)
                     // db에 저장된 모든 record들을 recordItem arrayList에 저장
-                    for(record in resultsRecord) {
-                        recordItems.add(RecordItem(record.idx, record.date, record.time, record.weather,
-                                record.temper, record.feel, record.outer!!, record.top!!, record.bottom!!, record.memo!!))
+                    for(idx in resultsRecord.size-1 downTo 0) {
+                        recordItems.add(RecordItem(resultsRecord[idx]!!.idx, resultsRecord[idx]!!.date, resultsRecord[idx]!!.time, resultsRecord[idx]!!.weather,
+                                resultsRecord[idx]!!.temper, resultsRecord[idx]!!.feel, resultsRecord[idx]!!.outer, resultsRecord[idx]!!.top, resultsRecord[idx]!!.bottom, resultsRecord[idx]!!.memo))
                     }
                     recordAdapter.notifyDataSetChanged()
                 }else if(today_card_rv.indexOfChild(v)!=-1){    // card item 이면
