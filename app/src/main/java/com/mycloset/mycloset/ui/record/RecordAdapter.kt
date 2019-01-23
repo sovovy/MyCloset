@@ -8,15 +8,18 @@ import com.mycloset.mycloset.R
 
 class RecordAdapter(var recordItems: ArrayList<RecordItem>) : RecyclerView.Adapter<RecordViewHolder>() {
     private lateinit var onItemClick : View.OnClickListener
+    private lateinit var onLongClick : View.OnLongClickListener
 
-    fun setOnItemClickListener(l : View.OnClickListener){
+    fun setOnItemClickListener(l : View.OnClickListener, long : View.OnLongClickListener){
         onItemClick = l
+        onLongClick = long
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
         val mainView : View = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_card, parent, false)
         mainView.setOnClickListener(onItemClick)
+        mainView.setOnLongClickListener(onLongClick)
         return RecordViewHolder(mainView)
     }
 

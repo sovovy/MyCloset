@@ -1,5 +1,6 @@
 package com.mycloset.mycloset.ui.today
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,11 +22,9 @@ import kotlinx.android.synthetic.main.fragment_today.view.*
 import android.os.StrictMode
 import android.support.v7.widget.GridLayoutManager
 import android.text.Html
-import android.util.Log
 import com.mycloset.mycloset.ui.edit.EditActivity
 import com.mycloset.mycloset.ui.record.RecordAdapter
 import com.mycloset.mycloset.ui.record.RecordItem
-import com.mycloset.mycloset.ui.record.RecordViewHolder
 import com.mycloset.mycloset.util.TodayWeather
 import io.realm.Realm
 import io.realm.RealmResults
@@ -140,7 +139,27 @@ class TodayFragment : Fragment(), View.OnClickListener{
 
         // record RecyclerView 세팅
         recordAdapter = RecordAdapter(recordItems)
-        recordAdapter.setOnItemClickListener(this)
+        recordAdapter.setOnItemClickListener(this, View.OnLongClickListener {
+            var result = recordRealm.where(RecordItem::class.java)
+                    .equalTo("idx", recordItems[today_card_rv.getChildAdapterPosition(it)].idx)
+                    .findAll()
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("기록을 지우시겠습니까?")
+                    .setPositiveButton("넹", { _, _ ->
+                        if(result.isNotEmpty()){
+                            recordRealm.beginTransaction()
+                            result.deleteAllFromRealm()
+                            recordRealm.commitTransaction()
+                        }
+                    })
+                    .setNegativeButton("아니용", {_, _ ->
+
+                    })
+            val alert = builder.create()
+            alert.show()
+
+            true
+        })
         val glm = GridLayoutManager(context, 2)
         v.today_card_rv.layoutManager = glm
         v.today_card_rv.adapter = recordAdapter

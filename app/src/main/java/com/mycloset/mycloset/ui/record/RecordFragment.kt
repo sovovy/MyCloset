@@ -1,5 +1,6 @@
 package com.mycloset.mycloset.ui.record
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,13 +17,12 @@ import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.fragment_record.view.*
 
 class RecordFragment : Fragment(), View.OnClickListener {
-    lateinit var recordItem : RecordItem
     lateinit var recordRealm: Realm
     lateinit var recordAdapter: RecordAdapter
     lateinit var recordItems: ArrayList<RecordItem>
 
     override fun onClick(v: View?) {
-        val idx: Int = recordItems.size-1 - record_rv.getChildAdapterPosition(v)
+        val idx: Int = recordItems[record_rv.getChildAdapterPosition(v)].idx
         val nextIntent = Intent(context, EditActivity::class.java)
         Log.d("cardView idx", idx.toString())
         nextIntent.putExtra("realm idx", idx)
@@ -65,7 +65,27 @@ class RecordFragment : Fragment(), View.OnClickListener {
 
 
         recordAdapter = RecordAdapter(recordItems)
-        recordAdapter.setOnItemClickListener(this)
+        recordAdapter.setOnItemClickListener(this , View.OnLongClickListener {
+            var result = recordRealm.where(RecordItem::class.java)
+                    .equalTo("idx", recordItems[record_rv.getChildAdapterPosition(it)].idx)
+                    .findAll()
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("기록을 지우시겠습니까?")
+                    .setPositiveButton("넹", { _, _ ->
+                        if(result.isNotEmpty()){
+                            recordRealm.beginTransaction()
+                            result.deleteAllFromRealm()
+                            recordRealm.commitTransaction()
+                        }
+                    })
+                    .setNegativeButton("아니용", {_, _ ->
+
+                    })
+            val alert = builder.create()
+            alert.show()
+
+            true
+        })
         val glm = GridLayoutManager(context,2)
         glm.orientation = RecyclerView.VERTICAL
         v.record_rv.layoutManager = glm

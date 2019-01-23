@@ -3,7 +3,6 @@ package com.mycloset.mycloset.ui.add
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.mycloset.mycloset.R
 import com.mycloset.mycloset.ui.MainActivity
@@ -49,7 +48,13 @@ class AddActivity : AppCompatActivity(), View.OnClickListener {
         when (v) {
             add_check_ib -> {
                 // Add a recordItem
-                insertRecord(realm.where(RecordItem::class.java).findAll().size,
+                var idx = 0
+                realm.where(RecordItem::class.java).findAll().let {
+                    if(it.size != 0) {
+                        idx = it.last()!!.idx+ 1
+                    }
+                }
+                insertRecord(idx,
                         SimpleDateFormat("yyyy-MM-dd").format(Date()).toString(),   // 오늘 날짜
                         // (시간, 상태, 기온, 체감온도)를 todayfragment에서 가져와야함
                         add_timePicker_tv.text.toString().substring(0, add_timePicker_tv.text.toString().length - 1).toInt(),  //
