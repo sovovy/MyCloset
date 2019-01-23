@@ -1,5 +1,6 @@
 # 오늘 뭐 입지?
-모바일SW 텀프로젝트
+모바일SW 텀프로젝트 <br/><br/>
+❗️아래 이미지는 참고를 위한 디자인이므로 실제 구동 화면과 다를 수 있습니다❗️
 
 ## Splash
 <img width="180" src="https://user-images.githubusercontent.com/18085486/50519777-d3ed6700-0aff-11e9-877d-5e5f2a93a39f.jpg">
