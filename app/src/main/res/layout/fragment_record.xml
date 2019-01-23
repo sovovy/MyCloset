@@ -29,47 +29,60 @@
 
     </RelativeLayout>
 
-    <!--초기 화면-->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/record_info_constraint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/record_sl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/record_rl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--초기 화면-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/record_info_constraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/record_info_iv"
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/record_info_tv"
-            android:background="@drawable/icon_info"/>
-        <TextView
-            android:id="@+id/record_info_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/record_info_iv"
-            android:layout_marginTop="14dp"
-            android:gravity="center_horizontal"
-            android:maxLines="10"
-            android:textSize="15sp"
-            android:textColor="@color/infoText"
-            android:text=" '오늘' 탭에서 오늘의 착장을 기록해보세요 :)"
-            android:fontFamily="@font/nanum_b"/>
-    </android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/record_info_iv"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/record_info_tv"
+                    android:background="@drawable/icon_info"/>
+                <TextView
+                    android:id="@+id/record_info_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/record_info_iv"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="10"
+                    android:textSize="15sp"
+                    android:textColor="@color/infoText"
+                    android:text=" '오늘' 탭에서 오늘의 착장을 기록해보세요 :)"
+                    android:fontFamily="@font/nanum_b"/>
+            </android.support.constraint.ConstraintLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/record_rv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/record_rl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/record_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-    </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

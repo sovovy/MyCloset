@@ -68,34 +68,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                     columnItems[idx].selected = true
                     selectedFeel = columnItems[idx].sensible
                     columnAdapter.notifyDataSetChanged()
-
-                    // 체감 온도에 맞게 record item 가져오기
-                    // realm 초기화
-                    Realm.init(context)
-                    recordRealm = Realm.getDefaultInstance()
-
-                    var tempErr = SharedPreferenceController.sharedPreferenceController.getTempErr(v!!.context)
-                    val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).greaterThanOrEqualTo("feel",selectedFeel-tempErr).lessThanOrEqualTo("feel",selectedFeel+tempErr).findAll()
-//                    between("feel", selectedFeel-tempErr, selectedFeel+tempErr).findAll()
-
-                    // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
-                    if(resultsRecord.size>0) {
-                        today_card_rv.visibility = View.VISIBLE
-                        today_info_iv.visibility = View.GONE
-                        today_info_tv.visibility = View.GONE
-                    } else {
-                        today_card_rv.visibility = View.GONE
-                        today_info_iv.visibility = View.VISIBLE
-                        today_info_tv.visibility = View.VISIBLE
-                    }
-
-                    recordItems.removeAll(recordItems)
-                    // db에 저장된 모든 record들을 recordItem arrayList에 저장
-                    for(idx in resultsRecord.size-1 downTo 0) {
-                        recordItems.add(RecordItem(resultsRecord[idx]!!.idx, resultsRecord[idx]!!.date, resultsRecord[idx]!!.time, resultsRecord[idx]!!.weather,
-                                resultsRecord[idx]!!.temper, resultsRecord[idx]!!.feel, resultsRecord[idx]!!.outer, resultsRecord[idx]!!.top, resultsRecord[idx]!!.bottom, resultsRecord[idx]!!.memo))
-                    }
-                    recordAdapter.notifyDataSetChanged()
+                    refreshData()
                 }else if(today_card_rv.indexOfChild(v)!=-1){    // card item 이면
                     val nextIntent = Intent(context, EditActivity::class.java)
                     nextIntent.putExtra("realm idx", recordItems[today_card_rv.getChildAdapterPosition(v)].idx)
@@ -150,6 +123,7 @@ class TodayFragment : Fragment(), View.OnClickListener{
                             recordRealm.beginTransaction()
                             result.deleteAllFromRealm()
                             recordRealm.commitTransaction()
+                            refreshData()
                         }
                     })
                     .setNegativeButton("아니용", {_, _ ->
@@ -165,5 +139,34 @@ class TodayFragment : Fragment(), View.OnClickListener{
         v.today_card_rv.adapter = recordAdapter
 
         return v
+    }
+
+    private fun refreshData(){
+        // 체감 온도에 맞게 record item 가져오기
+        // realm 초기화
+        Realm.init(context)
+        recordRealm = Realm.getDefaultInstance()
+
+        var tempErr = SharedPreferenceController.sharedPreferenceController.getTempErr(context!!)
+        val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).greaterThanOrEqualTo("feel",selectedFeel-tempErr).lessThanOrEqualTo("feel",selectedFeel+tempErr).findAll()
+
+        // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
+        if(resultsRecord.size>0) {
+            today_card_rv.visibility = View.VISIBLE
+            today_info_iv.visibility = View.GONE
+            today_info_tv.visibility = View.GONE
+        } else {
+            today_card_rv.visibility = View.GONE
+            today_info_iv.visibility = View.VISIBLE
+            today_info_tv.visibility = View.VISIBLE
+        }
+
+        recordItems.removeAll(recordItems)
+        // db에 저장된 모든 record들을 recordItem arrayList에 저장
+        for(idx in resultsRecord.size-1 downTo 0) {
+            recordItems.add(RecordItem(resultsRecord[idx]!!.idx, resultsRecord[idx]!!.date, resultsRecord[idx]!!.time, resultsRecord[idx]!!.weather,
+                    resultsRecord[idx]!!.temper, resultsRecord[idx]!!.feel, resultsRecord[idx]!!.outer, resultsRecord[idx]!!.top, resultsRecord[idx]!!.bottom, resultsRecord[idx]!!.memo))
+        }
+        recordAdapter.notifyDataSetChanged()
     }
 }

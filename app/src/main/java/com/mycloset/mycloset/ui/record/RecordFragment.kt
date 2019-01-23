@@ -35,12 +35,12 @@ class RecordFragment : Fragment(), View.OnClickListener {
         // realm 초기화
         Realm.init(context)
         recordRealm = Realm.getDefaultInstance()
-
-        // test) 초기화시키고 DB에 임시값
-//        recordRealm.beginTransaction()
-//        recordRealm.where(RecordItem::class.java!!).findAll().deleteAllFromRealm()
-//        recordRealm.commitTransaction()
-
+        // swipe refresh 설정
+        v.record_sl.setColorSchemeColors(resources.getColor(R.color.colorPrimaryDark))
+        v.record_sl.setOnRefreshListener {
+            refreshData(v)
+            v.record_sl.isRefreshing = false
+        }
         recordItems = ArrayList()
 
         val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
@@ -65,6 +65,7 @@ class RecordFragment : Fragment(), View.OnClickListener {
 
 
         recordAdapter = RecordAdapter(recordItems)
+        // item click listener 설정. 수정, 삭제.
         recordAdapter.setOnItemClickListener(this , View.OnLongClickListener {
             var result = recordRealm.where(RecordItem::class.java)
                     .equalTo("idx", recordItems[record_rv.getChildAdapterPosition(it)].idx)
@@ -76,6 +77,7 @@ class RecordFragment : Fragment(), View.OnClickListener {
                             recordRealm.beginTransaction()
                             result.deleteAllFromRealm()
                             recordRealm.commitTransaction()
+                            refreshData(v)
                         }
                     })
                     .setNegativeButton("아니용", {_, _ ->
@@ -137,5 +139,28 @@ class RecordFragment : Fragment(), View.OnClickListener {
         override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
 
         }
+    }
+    // data refresh
+    private fun refreshData(v: View){
+        recordItems = ArrayList()
+        val resultsRecord : RealmResults<RecordItem> = recordRealm.where(RecordItem::class.java).findAll()
+        // db에 저장된 값이 있으면 record_rv를 띄우고 없으면 record_info_iv를 띄움
+        if(resultsRecord.size>0) {
+            v.record_rv.visibility = View.VISIBLE
+            v.record_info_iv.visibility = View.GONE
+            v.record_info_tv.visibility = View.GONE
+        } else {
+            v.record_rv.visibility = View.GONE
+            v.record_info_iv.visibility = View.VISIBLE
+            v.record_info_tv.visibility = View.VISIBLE
+        }
+
+        // db에 저장된 모든 record들을 recordItem arrayList에 저장
+        for(idx in resultsRecord.size-1 downTo 0) {
+            recordItems.add(RecordItem(resultsRecord[idx]!!.idx, resultsRecord[idx]!!.date, resultsRecord[idx]!!.time, resultsRecord[idx]!!.weather,
+                    resultsRecord[idx]!!.temper, resultsRecord[idx]!!.feel, resultsRecord[idx]!!.outer, resultsRecord[idx]!!.top, resultsRecord[idx]!!.bottom, resultsRecord[idx]!!.memo))
+        }
+
+        recordAdapter.notifyDataSetChanged()
     }
 }
